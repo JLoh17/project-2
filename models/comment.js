@@ -1,18 +1,18 @@
 'use strict';
-const { Model } = require('sequelize');
+const { Model } = require('sequelize')
 const CommentSchema = require('./schema/comment')
 module.exports = (sequelize, DataTypes) => {
   class Comment extends Model {
     static associate(models) {
-      Comments.User = this.belongsTo(models.User)
-      Comments.Equipment = this.belongsTo(models.Equipment)
+      Comment.User = this.belongsTo(models.User)
+      Comment.Equipment = this.belongsTo(models.Equipment)
     }
   };
 
-  const { tableAttributes } = UserSchema(sequelize, DataTypes)
+  const { tableAttributes } = CommentSchema(sequelize, DataTypes)
   Comment.init(tableAttributes, {
     sequelize,
-    modelName: 'comment',
+    modelName: 'Comment',
   })
   return Comment
 };

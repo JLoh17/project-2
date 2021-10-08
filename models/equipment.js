@@ -2,7 +2,7 @@
 const { Model } = require('sequelize');
 const EquipmentSchema = require('./schema/equipment')
 module.exports = (sequelize, DataTypes) => {
-  class equipment extends Model {
+  class Equipment extends Model {
     static associate(models) {
       Equipment.Users = this.belongsToMany(models.User, {through:'Rating'})
       Equipment.Ratings = this.hasMany(models.Rating)
@@ -12,9 +12,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   const { tableAttributes } = EquipmentSchema(sequelize, DataTypes)
-  equipment.init(tableAttributes, {
+  Equipment.init(tableAttributes, {
     sequelize,
-    modelName: 'equipment',
+    modelName: 'Equipment',
   });
-  return equipment;
+  return Equipment;
 };

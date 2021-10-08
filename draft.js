@@ -29,5 +29,5 @@ Rating.Equipment = this.belongsTo(models.Equipment)
 // AuthorBook.Book = this.belongsTo(models.Book)
 
 // Comments (join table)
-  Comments.User = this.belongsTo(models.User)
-  Comments.Equipment = this.belongsTo(models.Equipment)
+  Comment.User = this.belongsTo(models.User)
+  Comment.Equipment = this.belongsTo(models.Equipment)

@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
   const { tableAttributes } = RatingSchema(sequelize, DataTypes)
   Rating.init(tableAttributes, {
     sequelize,
-    modelName: 'rating',
+    modelName: 'Rating',
   })
   return Rating
 };
