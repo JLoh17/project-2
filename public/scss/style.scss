@@ -1,1 +1,12 @@
 @import 'node_modules/bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
+
+body {
+  font-family: 'Open-Sans';
+}
+
+#navbar {
+  background-color: #03989e;
+  opacity: 0.9;
+  font-size: 20px;
+}

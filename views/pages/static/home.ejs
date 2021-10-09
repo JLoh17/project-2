@@ -7,11 +7,29 @@
     background-attachment: fixed;
     background-position: center center;
   }
+
+  #center-text {
+    position: absolute;
+    background-color: #bfcdee;
+    opacity: 0.9;
+    top: calc(50% - 90px);
+    left: 50%;
+    transform: translate(-50%);
+  }
 </style>
 
 <%- contentFor('scripts') %>
 
 <%- contentFor('body') %>
-<div class="container my-3">
-  <h1 class="text-center mb-3">Home Page</h1>
+
+<div id="center-text" class="container p-3 " >
+  <h1>Welcome to MusicGear reviews</h1>
+  <br>
+  <h3>
+    In this website, you can see the latest reviews on all music gear. Click "reviews" to get started!
+
+    By creating an account (it's free by the way!) you can contribute to the review ratings and add your own comments to the list.
+
+    Enjoy your stay!
+  </h3>
 </div>

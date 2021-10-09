@@ -1,0 +1,139 @@
+<script>
+  $(document).ready(function() {
+    $navbar = $('#navbar')
+    // $myProfileModal = $('#my-profile-modal')
+
+    $navbar.on('click', '#signup-btn', function(e) {
+      e.preventDefault()
+      $('#signup-modal').modal('show')
+    })
+
+    $navbar.on('click', '#login-btn', function(e) {
+      e.preventDefault()
+      $('#login-modal').modal('show')
+    })
+
+    $navbar.on('click', '#logout-btn', function(e) {
+      e.preventDefault()
+
+      axios({
+        method: 'DELETE',
+        url: '/api/auth/logout'
+      }).then(function() {
+        window.location.href = '/'
+      })
+    })
+
+    // const setModal = (html) => {
+    //   const $modalContent = $myProfileModal.find('.modal-content')
+
+    //   $myProfileModal.modal('show')
+    //   $modalContent.html(html)
+    // }
+
+    const setLoadingModal = () => {
+      setModal(`
+        <div class="modal-header">
+          <h5 class="modal-title">Loading</h5>
+          <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <div class="text-center">
+            <i class="fas fa-spinner fa-spin"></i>
+          </div>
+        </div>
+      `)
+    }
+
+    const errorHandler = function(err, $elem) {
+      switch(err.response.status) {
+        case 406: {
+          $elem.attr('disabled', false)
+
+          const { response: { data: { errors } }} = err
+
+          $('#modal').find('.invalid-feedback').empty()
+          $('#modal').find('.is-invalid').removeClass('is-invalid')
+
+          errors.forEach(function(error) {
+            const { param: fieldName, msg } = error
+            const $input = $('#modal').find(`[data-error-ref="${fieldName}"]`)
+            const $invalidFeedback = $input.siblings('.invalid-feedback')
+
+            $input.addClass('is-invalid')
+            $invalidFeedback.text(msg)
+          })
+          break
+        }
+        case 401: {
+          alert(err.response.data.message)
+          break
+        }
+        default: {
+          console.log(err)
+        }
+      }
+    }
+
+    $navbar.on('click', '#my-profile-btn', function(e) {
+      e.preventDefault()
+      $myProfileModal.modal('show')
+
+      setLoadingModal()
+      axios({
+        method: 'GET',
+        url: '/api/my/profile'
+      }).then((resp) => {
+        setModal(resp.data)
+      })
+    })
+
+    // $myProfileModal.on('click', '#my-profile-form-submit', function(e) {
+    //   e.preventDefault()
+    //   const $elem = $(e.target)
+    //   const formData = new FormData($('#my-profile-modal form')[0])
+
+    //   $elem.attr('disabled', true)
+
+    //   axios({
+    //     method: 'PUT',
+    //     url: '/api/my/profile',
+    //     data: formData
+    //   }).then(function(resp) {
+    //     $myProfileModal.find('#success-message').html('Saved!')
+    //   }).catch((err) => errorHandler(err, $elem)).finally(() => {
+    //     $elem.attr('disabled', false)
+    //   })
+    // })
+  })
+</script>
+
+<nav id="navbar" class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" aria-current="page" href="/">MusicGear reviews</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <span class="navbar-text">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/reviews">Reviews</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/my/reviews">My Reviews</a>
+          </li>
+          <li class="nav-item">
+            <a id="logout-btn" class="nav-link text-white">Lougout</a>
+          </li>
+          <li class="nav-item">
+            <a id="signup-btn" class="nav-link text-white">Signup</a>
+          </li>
+          <li class="nav-item">
+            <a id="login-btn" class="nav-link text-white">Login</a>
+          </li>
+        </ul>
+      </span>
+    </div>
+  </div>
+</nav>
