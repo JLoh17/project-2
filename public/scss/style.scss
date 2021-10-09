@@ -1,12 +1,43 @@
 @import 'node_modules/bootstrap/scss/bootstrap';
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
 
+html {
+  height: 100%;
+  margin: 0px;
+}
+
 body {
   font-family: 'Open-Sans';
+  min-height: 100%;
 }
 
 #navbar {
   background-color: #03989e;
   opacity: 0.9;
   font-size: 20px;
+}
+
+.homeBox {
+  background-color: #bfcdee;
+  opacity: 0.9;
+  max-width: 40%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.reviewBox {
+  background-color: #03989e;
+  opacity: 0.9;
+  max-width: 40%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.title {
+  text-decoration: underline;
 }
