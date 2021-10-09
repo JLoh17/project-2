@@ -1,3 +1,4 @@
+@import './custom-variables.scss'; // by placing this here, you can override all the bootstrap variables
 @import 'node_modules/bootstrap/scss/bootstrap';
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
 
@@ -17,27 +18,45 @@ body {
   font-size: 20px;
 }
 
+// the center box for Home is different to the rest
 .homeBox {
   background-color: #bfcdee;
   opacity: 0.9;
-  max-width: 40%;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  box-shadow: 5px 5px 20px #03989e;
+  border-radius: 10px;
 }
 
 .reviewBox {
   background-color: #03989e;
   opacity: 0.9;
-  max-width: 40%;
+  max-width: 90%;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   color: white;
+  box-shadow: 5px 5px 20px pink;
+  border-radius: 10px;
 }
 
+.myBox {
+  background-color: #03989e;
+  opacity: 0.9;
+  max-width: 90%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  box-shadow: 5px 5px 20px pink;
+  border-radius: 10px;
+}
+
+// title within the boxes
 .title {
   text-decoration: underline;
 }
