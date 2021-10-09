@@ -16,28 +16,23 @@
 
 
 <%- contentFor('body') %>
-<!-- Uses grid from bootstrap -->
+<!-- Uses table property from CSS -->
 
 <div class="container reviewBox p-4 text-center">
   <h1 class='text-white'>My Reviews</h1>
 
-  <button id="new-btn" class="btn btn-primary btn-lg" data-url="/api/my/reviews/new" data-method="GET" >New</button>
+  <button id="new-btn" class="btn btn-primary btn-lg my-3" data-url="/api/my/reviews/new" data-method="GET" >New</button>
 
-
-  <div class="row row-cols-12 row-cols-lg-3 text-center mt-3">
-    <div class="col">
-      <h3 class="title">Equipment</h3>
-      <h4>Yamaha MODX7</h4>
-    </div>
-    <div class="col">
-      <h3>&#160<h3>
-      <h3 class="fas fa-edit me-3"></h3>
-      <h3 class="fas fa-trash"></h3>
-    </div>
-    <div class="col">
-      <h3 class="title">My ratings</h3>
-      <h4>5.0</h4>
-    </div>
-  </div>
-
+ <table>
+    <tr>
+      <th class="w-50"><h3 class="title">Equipment</h3></th>
+      <th class="w-20"><h3>&#160<h3></h3></th>
+      <th class="w-50"><h3 class="title">My ratings</h3></th>
+    </tr>
+    <tr>
+      <td><h4>Yamaha MODX7</h4></td>
+      <td class="d-flex"><button class="delete-btn btn-dark btn-lg me-1" data-url="/api/my/reviews" data-method="GET"><h5 class="fas fa-edit"></h5></button> <button class="delete-btn btn-danger btn-lg" data-url="/api/my/reviews" data-method="GET"><h5 class="fas fa-trash"></h5></button></td>
+      <td><h4>5.0</h4></td>
+    </tr>
+  </table>
 </div>
