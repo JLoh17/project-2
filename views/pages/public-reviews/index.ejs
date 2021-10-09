@@ -11,31 +11,27 @@
       background-attachment: fixed;
       background-position: center center;
     }
-
-    .column {
-      float: left;
-      width: 50%;
-      }
-
   </style>
 
 
 <%- contentFor('scripts') %>
 
 <%- contentFor('body') %>
+<!-- Uses grid from bootstrap -->
+<div class="container reviewBox p-4">
+  <h1 class='text-center text-white'>Reviews</h1>
 
-<div class="reviewBox table p-4">
-  <h1 class="text-center">Reviews</h1>
-
-  <div class="row text-center">
-    <div class="column">
+  <div class="row row-cols-2 row-cols-lg-3 text-center mt-3">
+    <div class="col">
       <h3 class="title">Equipment</h3>
       <h5>Yamaha MODX7</h5>
     </div>
-
-    <div class="column">
-      <h3 class="title">Average rating</h3>
+    <div class="col">
+    </div>
+    <div class="col">
+      <h3 class="title">Average ratings</h3>
       <h5>5.0</h5>
     </div>
   </div>
+
 </div>

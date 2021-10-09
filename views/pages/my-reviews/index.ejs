@@ -16,19 +16,24 @@
 
 
 <%- contentFor('body') %>
-<div class="container">
-  <div>
-    <h1 class='text-center'>My Reviews</h1>
+<!-- Uses grid from bootstrap -->
+<div class="container reviewBox p-4">
+  <h1 class='text-center text-white'>My Reviews</h1>
+
+  <div class="row row-cols-2 row-cols-lg-3 text-center mt-3">
+    <div class="col">
+      <h3 class="title">Equipment</h3>
+      <h5>Yamaha MODX7</h5>
+    </div>
+    <div class="col">
+      <h3>&#160<h3>
+      <h5 class="fas fa-edit"></h5>
+      <h5 class="fas fa-trash"></h5>
+    </div>
+    <div class="col">
+      <h3 class="title">My ratings</h3>
+      <h5>5.0</h5>
+    </div>
   </div>
 
-
-
 </div>
-
-  // Search function via _partials
-
-  // New button
-
-  // Equipment     edit button     delete button     My rating
-
-  // Pagination
