@@ -38,7 +38,7 @@ const apiAuthLogin = async function(req, res) {
   req.session.token = token
 
   // Prevents the passwordHash from being sent!
-  res.status(200).json(userSerializer(user))
+  res.status(202).json(userSerializer(user))
 }
 
 module.exports = [
