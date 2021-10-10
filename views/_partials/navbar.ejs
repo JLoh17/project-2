@@ -1,16 +1,19 @@
 <script>
+  // A page can't be manipulated safely until the document is "ready." jQuery detects this state of readiness for you.
   $(document).ready(function() {
     $navbar = $('#navbar')
+    $signupModal = $('#signup-modal')
+    $loginModal = $('#login-modal')
     // $myProfileModal = $('#my-profile-modal')
 
     $navbar.on('click', '#signup-btn', function(e) {
       e.preventDefault()
-      $('#signup-modal').modal('show')
+      $signupModal.modal('show')
     })
 
     $navbar.on('click', '#login-btn', function(e) {
       e.preventDefault()
-      $('#login-modal').modal('show')
+      $loginModal.modal('show')
     })
 
     $navbar.on('click', '#logout-btn', function(e) {
@@ -139,3 +142,4 @@
 </nav>
 
 <%- include('./login-modal') %>
+<%- include('./signup-modal') %>
