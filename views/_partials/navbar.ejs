@@ -75,18 +75,18 @@
       }
     }
 
-    $navbar.on('click', '#my-profile-btn', function(e) {
-      e.preventDefault()
-      $myProfileModal.modal('show')
+    // $navbar.on('click', '#my-profile-btn', function(e) {
+    //   e.preventDefault()
+    //   $myProfileModal.modal('show')
 
-      setLoadingModal()
-      axios({
-        method: 'GET',
-        url: '/api/my/profile'
-      }).then((resp) => {
-        setModal(resp.data)
-      })
-    })
+    //   setLoadingModal()
+    //   axios({
+    //     method: 'GET',
+    //     url: '/api/my/profile'
+    //   }).then((resp) => {
+    //     setModal(resp.data)
+    //   })
+    // })
 
     // $myProfileModal.on('click', '#my-profile-form-submit', function(e) {
     //   e.preventDefault()
@@ -137,3 +137,5 @@
     </div>
   </div>
 </nav>
+
+<%- include('./login-modal') %>

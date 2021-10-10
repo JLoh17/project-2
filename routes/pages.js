@@ -7,7 +7,7 @@ router.get('/', require('../controllers/pages/static/home'))
 
 // Error Response
 router.use(function (req, res) {
-  res.render('not-found', { message: "Sorry, page does not exist!"})
+  res.render('not-found', { message: "Sorry, the page you are looking for does not exist!"})
 })
 
 module.exports = router

@@ -9,9 +9,11 @@ html {
 
 body {
   font-family: 'Open-Sans';
+  font-size: 20px;
   min-height: 100%;
 }
 
+// navbar changes
 #navbar {
   background-color: #03989e;
   opacity: 0.9;
@@ -30,6 +32,7 @@ body {
   border-radius: 10px;
 }
 
+// the index page for Reviews
 .reviewBox {
   background-color: #03989e;
   opacity: 0.9;
@@ -43,6 +46,7 @@ body {
   border-radius: 10px;
 }
 
+// the index page for myReviews
 .myBox {
   background-color: #03989e;
   opacity: 0.9;
@@ -59,4 +63,10 @@ body {
 // title within the boxes
 .title {
   text-decoration: underline;
+}
+
+// shifting the close button to the right
+.btn-close {
+  position: absolute;
+  left: 92%
 }
