@@ -6,10 +6,10 @@ const router = Router ()
 router.post('/auth/login', require('../controllers/api/auth/login'))
 router.delete('/auth/logout', require('../controllers/api/auth/logout'))
 
-// // Wishlist
+// Reviews
 // router.get('/reviews/:id', require('../controllers/api/reviews/show'))
 
-// // My Wishlist
+// My Reviews
 // router.post('/my/reviews', require('../controllers/api/my-reviews/create'))
 // router.get('/my/reviews/new', require('../controllers/api/my-reviews/new'))
 // router.get('/my/reviews/:id', require('../controllers/api/my-reviews/show'))

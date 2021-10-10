@@ -1,6 +1,6 @@
-@import './custom-variables.scss'; // by placing this here, you can override all the bootstrap variables
-@import 'node_modules/bootstrap/scss/bootstrap';
+@import './custom-variables.scss'; // by placing this above bootstrap, you can override all the bootstrap variables
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
+@import 'node_modules/bootstrap/scss/bootstrap';
 
 html {
   height: 100%;
