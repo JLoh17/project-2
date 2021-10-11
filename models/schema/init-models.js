@@ -1,24 +1,24 @@
 var DataTypes = require("sequelize").DataTypes;
+var _Comment = require("./comment");
+var _Equipment = require("./equipment");
+var _Rating = require("./rating");
 var _SequelizeMetum = require("./sequelize_metum");
 var _User = require("./user");
-var _comment = require("./comment");
-var _equipment = require("./equipment");
-var _rating = require("./rating");
 
 function initModels(sequelize) {
+  var Comment = _Comment(sequelize, DataTypes);
+  var Equipment = _Equipment(sequelize, DataTypes);
+  var Rating = _Rating(sequelize, DataTypes);
   var SequelizeMetum = _SequelizeMetum(sequelize, DataTypes);
   var User = _User(sequelize, DataTypes);
-  var comment = _comment(sequelize, DataTypes);
-  var equipment = _equipment(sequelize, DataTypes);
-  var rating = _rating(sequelize, DataTypes);
 
 
   return {
+    Comment,
+    Equipment,
+    Rating,
     SequelizeMetum,
     User,
-    comment,
-    equipment,
-    rating,
   };
 }
 module.exports = initModels;

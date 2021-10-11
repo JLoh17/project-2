@@ -1,16 +1,15 @@
 // const { authenticateCurrentUserByToken } = require('../../_helpers')
 
-const { Equipment, Rating  } = require('../../../models')
+const { Equipment } = require('../../../models')
 
 const apiMyReviewsNew = async function(req, res) {
-  const myReviews = await Equipment.build({
-    Rating: []
-  }, {
-    include: Equipment.Rating
-  })
-  myReviews.Rating.push(await Rating.build())
+  const dataStructure = {
+    Equipment: {},
+    Rating: {},
+    Comment: {}
+  }
 
-  res.render('api/my-reviews/new', { myReviews, layout: false })
+  res.render('api/my-reviews/new', { dataStructure, layout: false })
 }
 
 module.exports = [

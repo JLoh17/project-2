@@ -1,0 +1,11 @@
+<div class="modal-header">
+  <h1 class="modal-title text-white mx-auto">New Review</h1>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+  <%- include('_partials/form', { dataStructure }) %>
+</div>
+<div class="modal-footer d-flex justify-content-between">
+  <button id="reviews-form-submit" type="button" class="btn btn-primary btn-lg" data-url="/api/my/reviews" data-method="POST">Submit</button>
+  <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
+</div>

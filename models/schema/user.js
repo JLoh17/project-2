@@ -9,12 +9,13 @@ module.exports = function(sequelize, DataTypes) {
     },
     email: {
       type: DataTypes.STRING(255),
-      allowNull: true,
+      allowNull: false,
       unique: "Users_email_key"
     },
     profileName: {
       type: DataTypes.STRING(255),
-      allowNull: true
+      allowNull: false,
+      unique: "Users_profileName_key"
     },
     password: {
       type: DataTypes.STRING(255),
@@ -38,6 +39,13 @@ module.exports = function(sequelize, DataTypes) {
         unique: true,
         fields: [
           { name: "id" },
+        ]
+      },
+      {
+        name: "Users_profileName_key",
+        unique: true,
+        fields: [
+          { name: "profileName" },
         ]
       },
     ]

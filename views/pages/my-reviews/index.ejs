@@ -13,13 +13,15 @@
   </style>
 
 <%- contentFor('scripts') %>
+<script src="/js/my-reviews/index-control.js" defer></script>
+<script src="/js/my-reviews/input-control.js" defer></script>
 
 
 <%- contentFor('body') %>
 <!-- Uses table property from CSS -->
-<!-- consider using unstyled list from bootstrap under content - typography -->
+<!-- Another option will be using unstyled list from bootstrap under content - typography -->
 
-<div class="container reviewBox p-4 text-center">
+<div id="my-reviews-list" class="container reviewBox p-4 text-center">
   <h1 class='text-white'>My Reviews</h1>
 
   <button id="new-btn" class="btn btn-primary btn-lg my-3" data-url="/api/my/reviews/new" data-method="GET" >New review</button>
@@ -45,3 +47,5 @@
     </tr>
   </table>
 </div>
+
+<%- include('../../_partials/modal') %>

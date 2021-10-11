@@ -8,8 +8,6 @@ const permittedParams = [
   'Equipment',
   'Rating',
   'Comment',
-
-  ''
 ]
 
 // maximum character = 150? create custom validation?
@@ -22,17 +20,51 @@ const validation = [
 const apiMyReviewsCreate = async function(req, res) {
   const { locals: { currentUser } } = res
   const { body: MyReviewParams } = req
-  const newMyReview = await Review.create({
-    ...MyReviewParams,
-  }, {
-    fields: permittedParams,
-    include: {
-      association: Equipment.Ratings
-    }
-  })
-  myReviews.setUser(currentUser)
 
-  res.render('api/my-reviews/show', { myReview: myReviews, layout: false })
+  // req.body = {
+  //   Rating: {
+  //     rating: 0,
+  //   },
+  //   Equipment: {
+  //     equipmentName: '',
+  //   },
+  //   Comment: {
+  //     comment: ''
+  //   }
+  // }
+
+  // This is for public reviews
+  // const newEquipment = await Equipment.create(req.body.Equipment)
+  // const newRating = await currentUser.createRating({
+  //   ...req.body.Rating,
+  //   equipmentID: newEquipment.id
+  // })
+  // const newComment = await currentUser.createComment({
+  //   ...req.body.Comment,
+  //   equipmentID: newEquipment.id
+  // })
+
+  // await Equipment.findAll({
+  //   where: {
+  //     id: Number(req.params.id) || 0
+  //   },
+  //   include: [
+  //     {
+  //       association: Equipment.Ratings
+  //     }, {
+  //       association: Equipment.Comments
+  //     }
+  //   ]
+  // })
+
+  res.render('api/my-reviews/show', {
+    myReview: {
+      ...newEquipment,
+      Ratings: [newRating],
+      Comments: [newComment]
+    },
+    layout: false
+  })
 }
 
 module.exports = [

@@ -1,17 +1,17 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('comment', {
+  return sequelize.define('Comment', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    userID: {
+    UserId: {
       type: DataTypes.INTEGER,
       allowNull: true
     },
-    equipmentID: {
+    EquipmentId: {
       type: DataTypes.INTEGER,
       allowNull: true
     },
@@ -21,12 +21,12 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     sequelize,
-    tableName: 'comments',
+    tableName: 'Comments',
     schema: 'public',
     timestamps: true,
     indexes: [
       {
-        name: "comments_pkey",
+        name: "Comments_pkey",
         unique: true,
         fields: [
           { name: "id" },

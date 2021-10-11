@@ -1,24 +1,24 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('equipment', {
+  return sequelize.define('Equipment', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    equipmentName: {
+    name: {
       type: DataTypes.STRING(255),
       allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'equipment',
+    tableName: 'Equipment',
     schema: 'public',
     timestamps: true,
     indexes: [
       {
-        name: "equipment_pkey",
+        name: "Equipment_pkey",
         unique: true,
         fields: [
           { name: "id" },

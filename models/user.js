@@ -11,7 +11,6 @@ module.exports = (sequelize, DataTypes) => {
       User.Comments = this.hasMany(models.Comment)
     }
   };
-
   const { tableAttributes } = UserSchema(sequelize, DataTypes)
   User.init(tableAttributes, {
     sequelize,
