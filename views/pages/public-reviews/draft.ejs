@@ -1,0 +1,19 @@
+<% if (equipment.length > 0) { %>
+  <% ratings.forEach(function(wishlist){
+    <tr>
+      <td>
+        <a class="show-btn font-weight-bold" data-url="/api/public-reviews/<%= public-reviews.id %>" data-method="GET"><%= equipment.title %></a>
+      </td>
+      <td>
+          <h4><%= averageRating %></h4>
+      </td>
+    </tr>
+  <% }) %>
+
+  <%- include('_partials/pagination') %>
+<% } else { %>
+  <div>No Reviews</div>
+<% } %>
+
+  </table>
+</div>

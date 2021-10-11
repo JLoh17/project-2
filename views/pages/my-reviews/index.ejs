@@ -18,9 +18,6 @@
 
 
 <%- contentFor('body') %>
-<!-- Uses table property from CSS -->
-<!-- Another option will be using unstyled list from bootstrap under content - typography -->
-
 <div id="my-reviews-list" class="container reviewBox p-4 text-center">
   <h1 class='text-white'>My Reviews</h1>
 
@@ -33,18 +30,31 @@
       <th class="w-20"><h3>&#160<h3></h3></th>
       <th class="w-50"><h3 class="title">My ratings</h3></th>
     </tr>
+    <% if (reviews.length > 0) { %>
+      <% reviews.forEach(function(review){ %>
+        <tr id="reviews-list" class="list-unstyled">
+          <td>
+            <h4><a class="show-btn text-white text-decoration-none" data-url="/api/my/reviews/<%= review.id %>" data-method="GET"><%= review.Equipment.name %></a></h4>
+          </td>
 
-    <tr>
-      <td><h4>Yamaha MODX7</h4></td>
-      <td class="d-flex">
-        <button class="delete-btn btn-dark btn-lg me-1" data-url="/api/my/reviews" data-method="GET">
-          <h5 class="fas fa-edit"></h5>
-        </button>
-        <button class="delete-btn btn-danger btn-lg" data-url="/api/my/reviews" data-method="GET">
-          <h5 class="fas fa-trash"></h5>
-        </button></td>
-      <td><h4>5.0</h4></td>
-    </tr>
+          <td class="d-flex">
+            <button class="edit-btn btn-dark btn-lg me-1" data-url="/api/my/reviews/<%= review.id %>/edit" data-method="GET">
+              <h5 class="fas fa-edit"></h5>
+            </button>
+
+            <button class="delete-btn btn btn-danger btn-lg" data-url="/api/my/reviews/<%= review.id %>" data-method="DELETE">
+              <h5 class="fas fa-trash"></h5>
+            </button>
+          </td>
+
+          <td>
+            <h4><%= review.rating %></h4>
+          </td>
+        </tr>
+      <% }) %>
+    <% } else { %>
+    <div>No Reviews</div>
+    <% } %>
   </table>
 </div>
 

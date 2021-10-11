@@ -70,22 +70,22 @@ $('#my-reviews-list, #modal').on('click', '.show-btn, .edit-btn, #new-btn', func
   }).catch(errorHandler)
 })
 
-// // Delete button for modal and outside
-// $('#my-reviews-list, #modal').on('click', '.delete-btn', function(e) {
-//   e.preventDefault()
-//   const parent = $(e.target).parent('button')[0]
-//   const $elem = parent ? $(e.target).parent() : $(e.target)
-//   const url = $elem.data('url')
+// Delete button for modal and outside
+$('#my-reviews-list, #modal').on('click', '.delete-btn', function(e) {
+  e.preventDefault()
+  const parent = $(e.target).parent('button')[0]
+  const $elem = parent ? $(e.target).parent() : $(e.target)
+  const url = $elem.data('url')
 
-//   $('#my-reviews-list .delete-btn, #modal .delete-btn').attr('disabled', true)
+  $('#my-reviews-list .delete-btn, #modal .delete-btn').attr('disabled', true)
 
-//   axios({ method: 'DELETE', url }).then(function() {
-//     $('#modal').modal('hide')
-//     $(`#my-reviews-list .delete-btn[data-url="${url}"][data-method="DELETE"]`).parentsUntil('#reviews-list').remove()
-//   }).catch(errorHandler).then(function() {
-//     $('#my-reviews-list .delete-btn, #modal .delete-btn').attr('disabled', false)
-//   })
-// })
+  axios({ method: 'DELETE', url }).then(function() {
+    $('#modal').modal('hide')
+    $(`#my-reviews-list .delete-btn[data-url="${url}"][data-method="DELETE"]`).parentsUntil('#reviews-list').remove()
+  }).catch(errorHandler).then(function() {
+    $('#my-reviews-list .delete-btn, #modal .delete-btn').attr('disabled', false)
+  })
+})
 
 // // Submit form on modal
 // $('#modal').on('click', '#review-form-submit', function(e) {
