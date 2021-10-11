@@ -13,6 +13,10 @@ module.exports = {
         allowNull: false,
         unique: true
       },
+      passwordHash: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       profileName: {
         type: Sequelize.STRING,
         allowNull: false,

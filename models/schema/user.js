@@ -12,6 +12,10 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       unique: "Users_email_key"
     },
+    passwordHash: {
+      type: DataTypes.STRING(255),
+      allowNull: false
+    },
     profileName: {
       type: DataTypes.STRING(255),
       allowNull: false,

@@ -1,6 +1,7 @@
 'use strict';
 const { Model } = require('sequelize');
 const UserSchema = require('./schema/user')
+
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
@@ -9,6 +10,8 @@ module.exports = (sequelize, DataTypes) => {
 
       User.CommentedEquipments = this.belongsToMany(models.Equipment, {through:'Comment'})
       User.Comments = this.hasMany(models.Comment)
+
+      User.AuthenticityTokens = this.hasMany(models.AuthenticityToken)
     }
   };
   const { tableAttributes } = UserSchema(sequelize, DataTypes)

@@ -23,7 +23,7 @@ const setLoadingModal = function() {
 const errorHandler = function(err, $elem) {
   switch(err.response.status) {
     case 406: {
-      $elem.attr('disabled', false)
+      $elem.attr('disabled', false) // disable button
 
       const { response: { data: { errors } }} = err
 
@@ -77,7 +77,7 @@ $('#my-reviews-list, #modal').on('click', '.delete-btn', function(e) {
   const $elem = parent ? $(e.target).parent() : $(e.target)
   const url = $elem.data('url')
 
-  $('#my-reviews-list .delete-btn, #modal .delete-btn').attr('disabled', true)
+  $('#my-reviews-list .delete-btn, #modal .delete-btn').attr('disabled', true) // disable button to not submit twice
 
   axios({ method: 'DELETE', url }).then(function() {
     $('#modal').modal('hide')
@@ -100,7 +100,7 @@ $('#my-reviews-list, #modal').on('click', '.delete-btn', function(e) {
 //   axios({ method, url, data: formData }).then(function(resp) {
 //     setModal(resp.data)
 
-//     if (method === 'POST') {
+//     if (method === 'POST') { // this makes sure a newly created page is shown as first
 //       const id = $('#modal').find('.modal-title span').text()
 //       const title = $('#modal').find('.modal-body h1').text()
 //       if (id) {
