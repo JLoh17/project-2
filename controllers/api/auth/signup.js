@@ -1,11 +1,12 @@
 const bcrypt = require("bcrypt")
 const { body } = require('express-validator')
+const multer = require('multer')
 // const MulterParser = require('../../../services/MulterParser')
 
 const { User } = require('../../../models')
-// const { checkValidation } = require('../../_helpers')
+const { checkValidation } = require('../../_helpers')
 
-const permittedSignupParams = ['email', 'passwordHash'] // only allows you to save password hash, not password
+const permittedSignupParams = ['email', 'profileName','passwordHash'] // only allows you to save password hash, not password
 
 const validation = [
   body('email')
@@ -17,14 +18,16 @@ const validation = [
         if (user) return Promise.reject()
       }
     }).withMessage('Email is already in use'),
+
   body('profileName')
     .notEmpty().withMessage('Profile Name is required')
-    .custom(async function(email){
-      if (email) {
-        const user = await User.findOne({ where: {profileName}})
-        if (profileName) return Promise.reject()
+    .custom(async function(profileName){
+      if (profileName) {
+        const user = await User.findOne({ where: { profileName }})
+        if (user) return Promise.reject()
       }
     }).withMessage('Profile Name is already in use, please choose another'),
+
   body('password')
     .notEmpty().withMessage('Password is Required')
     .isLength({ min: 6 }).withMessage('Password must be longer or equal to 6 characters')
@@ -52,8 +55,8 @@ const apiAuthSignup = async function(req, res) {
 }
 
 module.exports = [
-  // MulterParser.none(),
+  multer().none(),
   validation,
-  // checkValidation,
+  checkValidation,
   apiAuthSignup
 ]

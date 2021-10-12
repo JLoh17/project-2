@@ -4,7 +4,7 @@ const { Rating, Equipment } = require('../../../models')
 const myReviewsIndex = async function(req, res){
   const {query} = req
   // const { locals: { currentUser } } = res <-- show this when have user
-  const currentUserId = 5 // for explanation
+  const currentUserId = 2 // for testing
 
   const q = query.q || ''
 

@@ -15,7 +15,7 @@
         url: '/api/auth/login',
         data: formData
       }).then(function() {
-        window.location.href = '/'
+        window.location.href = '../my/reviews' // redirects you to page
       }).catch(function(err) {
         switch (err.response.status) {
           case 406: {
@@ -71,8 +71,8 @@
         </form>
       </div>
       <div class="d-flex justify-content-between modal-footer">
-        <button id="login-form-submit" type="button" class="btn btn-primary btn-lg">Submit</button>
         <button type="button" class="btn btn-danger btn-lg" data-bs-dismiss="modal">Close</button>
+        <button id="login-form-submit" type="button" class="btn btn-primary btn-lg">Submit</button>
       </div>
     </div>
   </div>

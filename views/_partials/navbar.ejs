@@ -19,7 +19,7 @@
     $navbar.on('click', '#logout-btn', function(e) {
       e.preventDefault()
 
-      axios({
+      axios({ // send a request to API
         method: 'DELETE',
         url: '/api/auth/logout'
       }).then(function() {
@@ -124,18 +124,21 @@
         <li class="nav-item">
           <a class="nav-link text-white" href="/reviews">Reviews</a>
         </li>
+        <% if (currentUser) { %>
         <li class="nav-item">
           <a class="nav-link text-white" href="/my/reviews">My Reviews</a>
         </li>
         <li class="nav-item">
           <a id="logout-btn" class="nav-link text-white">Logout</a>
         </li>
+        <% } else { %>
         <li class="nav-item">
           <a id="signup-btn" class="nav-link text-white">Signup</a>
         </li>
         <li class="nav-item">
           <a id="login-btn" class="nav-link text-white">Login</a>
         </li>
+        <% } %>
       </ul>
     </div>
   </div>

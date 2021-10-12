@@ -25,12 +25,12 @@
 
   <table>
     <!-- table header -->
-    <tr>
-      <th class="w-50"><h3 class="title">Equipment</h3></th>
-      <th class="w-20"><h3>&#160<h3></h3></th>
-      <th class="w-50"><h3 class="title">My ratings</h3></th>
-    </tr>
     <% if (reviews.length > 0) { %>
+      <tr>
+        <th class="w-50"><h3 class="title">Equipment</h3></th>
+        <th class="w-20"><h3>&#160<h3></h3></th>
+        <th class="w-50"><h3 class="title">My ratings</h3></th>
+      </tr>
       <% reviews.forEach(function(review){ %>
         <tr id="reviews-list" class="list-unstyled">
           <td>
@@ -53,7 +53,7 @@
         </tr>
       <% }) %>
     <% } else { %>
-    <div>No Reviews</div>
+      <h4 class="mt-3">Start growing your list of reviews with the "New" button</h4>
     <% } %>
   </table>
 </div>

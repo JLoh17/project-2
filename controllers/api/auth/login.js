@@ -1,10 +1,11 @@
 const bcrypt = require("bcrypt")
 const crypto = require('crypto')
 const { body } = require('express-validator')
+const multer = require('multer')
 // const MulterParser = require('../../../services/MulterParser')
 
 const { User } = require('../../../models')
-// const { checkValidation } = require('../../_helpers')
+const { checkValidation } = require('../../_helpers')
 
 const validation = [
   body('email')
@@ -24,7 +25,7 @@ const userSerializer = function(values) {
 const apiAuthLogin = async function(req, res) {
   const { body: { email, password } } = req
 
-  // Find the user
+  // Find the user, if does not exist give 404
   let user = await User.findOne({ where: { email } })
   if (!user) return res.status(404).json({ message: `User not found with email: ${email}` })
 
@@ -42,8 +43,8 @@ const apiAuthLogin = async function(req, res) {
 }
 
 module.exports = [
-  // MulterParser.none(),
+  multer().none(),
   validation,
-  // checkValidation,
+  checkValidation,
   apiAuthLogin,
 ]

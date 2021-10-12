@@ -87,31 +87,31 @@ $('#my-reviews-list, #modal').on('click', '.delete-btn', function(e) {
   })
 })
 
-// // Submit form on modal
-// $('#modal').on('click', '#review-form-submit', function(e) {
-//   e.preventDefault()
-//   const $elem = $(e.target)
-//   const url = $elem.data('url')
-//   const method = $elem.data('method')
-//   const formData = new FormData($('#modal form')[0])
+// Submit form on modal
+$('#modal').on('click', '#review-form-submit', function(e) {
+  e.preventDefault()
+  const $elem = $(e.target)
+  const url = $elem.data('url')
+  const method = $elem.data('method')
+  const formData = new FormData($('#modal form')[0])
 
-//   $elem.attr('disabled', true)
+  $elem.attr('disabled', true)
 
-//   axios({ method, url, data: formData }).then(function(resp) {
-//     setModal(resp.data)
+  axios({ method, url, data: formData }).then(function(resp) {
+    setModal(resp.data)
 
-//     if (method === 'POST') { // this makes sure a newly created page is shown as first
-//       const id = $('#modal').find('.modal-title span').text()
-//       const title = $('#modal').find('.modal-body h1').text()
-//       if (id) {
-//         $('#reviews-list').prepend(`
-//           <li class="my-1">
-//             <a class="show-btn font-weight-bold" data-url="/api/my/reviews/${id}" data-method="GET">${title}</a>
-//             <button class="edit-btn btn btn-info btn-sm" data-url="/api/my/reviews/${id}/edit" data-method="GET"><i class="fas fa-edit"></i></button>
-//             <button class="delete-btn btn btn-danger btn-sm" data-url="/api/my/reviews/${id}" data-method="DELETE"><i class="fas fa-trash"></i></button>
-//           </li>
-//         `)
-//       }
-//     }
-//   }).catch((err) => errorHandler(err, $elem))
-// })
+    if (method === 'POST') { // this makes sure a newly created page is shown as first
+      const id = $('#modal').find('.modal-title span').text()
+      const title = $('#modal').find('.modal-body h1').text()
+      if (id) {
+        $('#reviews-list').prepend(`
+          <li class="my-1">
+            <a class="show-btn font-weight-bold" data-url="/api/my/reviews/${id}" data-method="GET">${title}</a>
+            <button class="edit-btn btn btn-info btn-sm" data-url="/api/my/reviews/${id}/edit" data-method="GET"><i class="fas fa-edit"></i></button>
+            <button class="delete-btn btn btn-danger btn-sm" data-url="/api/my/reviews/${id}" data-method="DELETE"><i class="fas fa-trash"></i></button>
+          </li>
+        `)
+      }
+    }
+  }).catch((err) => errorHandler(err, $elem))
+})

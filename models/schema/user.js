@@ -20,10 +20,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(255),
       allowNull: false,
       unique: "Users_profileName_key"
-    },
-    password: {
-      type: DataTypes.STRING(255),
-      allowNull: false
     }
   }, {
     sequelize,

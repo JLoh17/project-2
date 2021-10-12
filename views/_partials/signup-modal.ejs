@@ -3,20 +3,25 @@
     $signupModal = $('#signup-modal')
     $signupForm = $('#signup-form')
 
+    $signupModal.on('hide.bs.modal', () => { // resets the contents inside the form
+      $signupForm.trigger('reset')
+    })
+
     $signupModal.on('click', '#signup-form-submit', function(e) {
       e.preventDefault()
-      const formData = new FormData($signupForm[0])
+      const formData = new FormData($signupForm[0]) // jQuery stringifies the object in jQuery format so we need to grab the first DOM element from it, which will most likely be 0 (for just ID).
 
       axios({
         method: 'POST',
         url: '/api/auth/signup',
         data: formData
       }).then(function() {
-        $signupModal.modal('hide')
-        $('#login-modal').modal('show')
+        $signupModal.modal('hide') // no authenticity token is generated
+        $('#login-modal').modal('show')  // authenticity token is generated
+
       }).catch(function(err) {
         switch (err.response.status) {
-          case 406: {
+          case 406: { // if you get a validation error, do all the following
             const { response: { data: { errors } }} = err
 
             $signupModal.find('.invalid-feedback').empty()
@@ -51,7 +56,8 @@
       <div class="modal-body">
         <form id="signup-form" novalidate>
           <div class="form-group">
-            <h4 class="text-white">Email:</h4>            <input class="form-control" type="email" name="email" placeholder="Please enter e-mail">
+            <h4 class="text-white">Email:</h4>
+            <input class="form-control" type="email" name="email" placeholder="Please enter e-mail">
             <div class="invalid-feedback"></div>
           </div>
           <div class="form-group">
@@ -68,8 +74,8 @@
         </form>
       </div>
       <div class="d-flex justify-content-between modal-footer">
-        <button id="login-form-submit" type="button" class="btn btn-primary btn-lg d-flex justify-content:space-between">Submit</button>
         <button type="button" class="btn btn-danger btn-lg" data-bs-dismiss="modal">Close</button>
+        <button id="signup-form-submit" type="button" class="btn btn-primary btn-lg d-flex justify-content:space-between">Submit</button>
       </div>
     </div>
   </div>
