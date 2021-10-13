@@ -1,35 +1,24 @@
 <div class="modal-header">
-  <h5 class="modal-title">My Reviews <span><%= myReviews.id %></span></h5>
+  <h5 class="modal-title">My Reviews <span><%= review.id %></span></h5>
   <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
 </div>
 <div class="modal-body">
-  <div class="text-center">
-    <h1 class="mb-3"><%= myReviews.title %></h1>
-    <h2 class="mb-3"><%= myReviews.rating%></h2>
-    <h3 class="mb-3"><%= moment(myReviews.createdAt).format('YYYY/MM/DD') %></h3>
+
+    <h1 class="mb-3"><%= review.profile %>'s reviewed gear list</h1>
 
     <div class="mb-3">
-      <button class="edit-btn btn btn-info btn-sm" data-url="/api/my/reviews/<%= myReviews.id %>/edit" data-method="GET"><i class="fas fa-edit"></i></button>
-      <button class="delete-btn btn btn-danger btn-sm" data-url="/api/my/reviews/<%= myReviews.id %>" data-method="DELETE"><i class="fas fa-trash"></i></button>
+      <button class="edit-btn btn-dark btn-lg me-1" data-url="/api/my/reviews/<%= review.id %>/edit" data-method="GET">
+        <h5 class="fas fa-edit"></h5>
+      </button>
+
+      <button class="delete-btn btn btn-danger btn-lg" data-url="/api/my/reviews/<%= review.id %>" data-method="DELETE">
+        <h5 class="fas fa-trash"></h5>
+      </button>
     </div>
 
-    <% if (equipment.Ratings.length > 0) { %>
-      <ul class="list-group">
-        <% equipment.Ratings.forEach(function(item) { %>
-          <li class="list-group-item">
-            <span class="<%= (item.received ? 'text-decloration-through' : '') %>"><%= item.name %></span>
-            <% for (let i = 0; i < 5; i++) { %>
-              <% if (i < item.importance) { %>
-                <i class="fas fa-star"></i>
-              <% } else { %>
-                <i class="far fa-star"></i>
-              <% } %>
-            <% } %>
-          </li>
-        <% }) %>
-      </ul>
-    <% } else { %>
-      <div>No Items</div>
-    <% } %>
+  <div class="text-center">
+    <h1 class="mb-3"><%= review.title %></h1>
+    <h2 class="mb-3"><%= review.rating%></h2>
+    <h3 class="mb-3"><%= review.comment %></h3>
   </div>
 </div>

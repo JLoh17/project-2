@@ -77,7 +77,7 @@ $('#my-reviews-list, #modal').on('click', '.delete-btn', function(e) {
   const $elem = parent ? $(e.target).parent() : $(e.target)
   const url = $elem.data('url')
 
-  $('#my-reviews-list .delete-btn, #modal .delete-btn').attr('disabled', true) // disable button to not submit twice
+  $('#my-reviews-list .delete-btn, #modal .delete-btn').attr('disabled', true) // disable button to not submit twice, then we send an AJAX request below to hide the modal, then delete the entire row of which we targeted
 
   axios({ method: 'DELETE', url }).then(function() {
     $('#modal').modal('hide')
@@ -100,18 +100,47 @@ $('#modal').on('click', '#reviews-form-submit', function(e) {
   axios({ method, url, data: formData }).then(function(resp) {
     setModal(resp.data)
 
-    // if (method === 'POST') { // this makes sure a newly created page is shown as first
-    //   const id = $('#modal').find('.modal-title span').text()
-    //   const title = $('#modal').find('.modal-body h1').text()
-    //   if (id) {
-    //     $('#reviews-list').prepend(
-    //       <li class="my-1">
-    //         <a class="show-btn font-weight-bold" data-url="/api/my/reviews/${id}" data-method="GET">${title}</a>
-    //         <button class="edit-btn btn btn-info btn-sm" data-url="/api/my/reviews/${id}/edit" data-method="GET"><i class="fas fa-edit"></i></button>
-    //         <button class="delete-btn btn btn-danger btn-sm" data-url="/api/my/reviews/${id}" data-method="DELETE"><i class="fas fa-trash"></i></button>
-    //       </li>
-    //     )
-    //   }
-    // }
+    if (method === 'POST') { // this makes sure a newly created item is shown as first
+      const id = $('#modal').find('.modal-title span').text()
+      const title = $('#modal').find('.modal-body h1').text()
+      if (id) {
+        $('#reviews-list').prepend(`
+          <li class="my-1">
+            <a class="show-btn font-weight-bold" data-url="/api/my/reviews/${id}" data-method="GET">${title}</a>
+            <button class="edit-btn btn btn-info btn-sm" data-url="/api/my/reviews/${id}/edit" data-method="GET"><i class="fas fa-edit"></i></button>
+            <button class="delete-btn btn btn-danger btn-sm" data-url="/api/my/reviews/${id}" data-method="DELETE"><i class="fas fa-trash"></i></button>
+          </li>
+        `)
+      }
+    }
   }).catch((err) => errorHandler(err, $elem))
 })
+
+//     if (method === 'POST') { // this makes sure a newly created item is shown as first
+//       const id = $('#modal').find('.modal-title span').text()
+//       const equipment = $('#modal').find('.modal-body h1').text()
+//       if (id) {
+//         $('#reviews-list').prepend(`
+//         <tr id="reviews-list" class="list-unstyled">
+//           <td>
+//             <h4><a class="show-btn text-white text-decoration-none" data-url="/api/my/reviews/${id}" data-method="GET">${equipment}</a></h4>
+//           </td>
+
+//           <td class="d-flex">
+//             <button class="edit-btn btn-dark btn-lg me-1" data-url="/api/my/reviews/${id}edit" data-method="GET">
+//               <h5 class="fas fa-edit"></h5>
+//             </button>
+
+//             <button class="delete-btn btn btn-danger btn-lg" data-url="/api/my/reviews/            <button class="edit-btn btn-dark btn-lg me-1" data-url="/api/my/reviews/${id}edit" data-method="GET">
+// " data-method="DELETE">
+//               <h5 class="fas fa-trash"></h5>
+//             </button>
+//           </td>
+
+//           <td>
+//             <h4><%= review.rating.toFixed(1) %></h4>
+//           </td>
+//         </tr>
+//         `)
+//       }
+//     }

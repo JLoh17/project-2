@@ -19,6 +19,8 @@
         $signupModal.modal('hide') // no authenticity token is generated
         $('#login-modal').modal('show')  // authenticity token is generated
 
+        // TRY TO REFRESH DIRECTLY TO USER PAGE
+
       }).catch(function(err) {
         switch (err.response.status) {
           case 406: { // if you get a validation error, do all the following

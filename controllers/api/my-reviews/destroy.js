@@ -1,4 +1,6 @@
-// const { authenticateCurrentUserByToken , myWishlist: { getCurrentUserWishlistById } } = require('../../_helpers')
+const { authenticateCurrentUserByToken,
+  // myReviews: { getCurrentUserReviewsById }
+} = require('../../_helpers')
 const { Rating } = require('../../../models')
 
 const apiEquipmentDestroy = async function(req, res) {
@@ -9,7 +11,7 @@ const apiEquipmentDestroy = async function(req, res) {
 }
 
 module.exports = [
-  // authenticateCurrentUserByToken('json'),
-  // getCurrentUserWishlistById('json'),
+  authenticateCurrentUserByToken('json'),
+  // getCurrentUserReviewsById('json'),
   apiEquipmentDestroy
 ]

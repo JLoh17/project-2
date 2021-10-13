@@ -35,9 +35,7 @@ const apiMyReviewsCreate = async function(req, res) {
     }
   }
 
-  // This is for public reviews
   const newEquipment = await Equipment.create(req.body.Equipment)
-  console.log(newEquipment, newEquipment.id)
   const newRating = await currentUser.createRating({
     ...req.body.Rating,
     EquipmentId: newEquipment.id

@@ -1,19 +1,46 @@
-<% if (equipment.length > 0) { %>
-  <% ratings.forEach(function(wishlist){
-    <tr>
-      <td>
-        <a class="show-btn font-weight-bold" data-url="/api/public-reviews/<%= public-reviews.id %>" data-method="GET"><%= equipment.title %></a>
-      </td>
-      <td>
-          <h4><%= averageRating %></h4>
-      </td>
-    </tr>
-  <% }) %>
+<%- contentFor('meta') %>
+<title>Reviews</title>
 
-  <%- include('_partials/pagination') %>
-<% } else { %>
-  <div>No Reviews</div>
-<% } %>
+<%- contentFor('styles') %>
+  <style>
+    body {
+      background-image: url(https://wallpapercave.com/wp/wp3409440.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center center;
+    }
+  </style>
 
+
+<%- contentFor('scripts') %>
+<script src="/js/my-reviews/index-control.js" defer></script>
+
+
+<%- contentFor('body') %>
+<!-- Uses grid from bootstrap -->
+<div class="container reviewBox p-4 text-center">
+  <h1 class='text-white mb-5'>Reviews</h1>
+   <table style="width:100%;">
+
+    <% if (publicReviews.length > 0) { %>
+      <tr>
+        <th class="w-50"><h3 class="title">Equipment</h3></th>
+        <th class="w-50"><h3 class="title">Average ratings</h3></th>
+      </tr>
+      <% publicReviews.forEach(function(publicReview){ %>
+        <tr>
+          <td>
+            <h4><%= publicReview.Equipment.name %></h4>
+          </td>
+          <td>
+            <h4><%= publicReview.rating.toFixed(1) %></h4>
+          </td>
+        </tr>
+      <% }) %>
+
+    <% } else { %>
+      <div>No Reviews</div>
+    <% } %>
   </table>
 </div>

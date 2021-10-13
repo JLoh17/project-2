@@ -12,7 +12,7 @@ router.get('/reviews/:id', require('../controllers/api/public-reviews/show'))
 // My Reviews
 router.get('/my/reviews/new', require('../controllers/api/my-reviews/new')) // form
 router.post('/my/reviews', require('../controllers/api/my-reviews/create')) // create
-// router.get('/my/reviews/:id', require('../controllers/api/my-reviews/show'))
+router.get('/my/reviews/:id', require('../controllers/api/my-reviews/show'))
 router.delete('/my/reviews/:id', require('../controllers/api/my-reviews/destroy'))
 // router.put('/my/reviews/:id', require('../controllers/api/my-reviews/update'))
 // router.get('/my/reviews/:id/edit', require('../controllers/api/my-reviews/edit'))
