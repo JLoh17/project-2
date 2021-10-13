@@ -20,7 +20,7 @@ const publicReviewsIndex = async function (req, res) {
 // Give only one equipment ID where many duplicate equipment ID
 // and for each equipment ID, provide the average rating
 
-  res.render('pages/public-reviews/draft', { publicReviews })
+  res.render('pages/public-reviews/index', { publicReviews })
 }
 
 module.exports = [

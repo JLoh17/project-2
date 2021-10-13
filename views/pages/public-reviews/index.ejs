@@ -1,7 +1,6 @@
 <%- contentFor('meta') %>
 <title>Reviews</title>
 
-
 <%- contentFor('styles') %>
   <style>
     body {
@@ -15,22 +14,35 @@
 
 
 <%- contentFor('scripts') %>
+<script src="/js/my-reviews/index-control.js" defer></script>
+
 
 <%- contentFor('body') %>
 <!-- Uses grid from bootstrap -->
-
-
 <div class="container reviewBox p-4 text-center">
-  <h1 class='text-white'>Reviews</h1>
+  <h1 class='text-white mb-5'>Reviews</h1>
+   <table style="width:100%;">
 
-  <table style="width:100%;">
-    <tr>
-      <th class="w-50"><h3 class="title">Equipment</h3></th>
-      <th class="w-50"><h3 class="title">Average ratings</h3></th>
-    </tr>
-    <tr>
-      <td><h4>Yamaha MODX7</h4></td>
-      <td><h4>5.0</h4></td>
-    </tr>
+    <% if (publicReviews.length > 0) { %>
+      <tr>
+        <th class="w-50"><h3 class="title">Equipment</h3></th>
+        <th class="w-50"><h3 class="title">Average ratings</h3></th>
+      </tr>
+      <% publicReviews.forEach(function(publicReview){ %>
+        <tr>
+          <td>
+            <h4><a class="show-btn text-white text-decoration-none" data-url="/api/reviews/<%= publicReview.id %>" data-method="GET"><%= publicReview.Equipment.name %></a></h4>
+          </td>
+          <td>
+            <h4><%= publicReview.rating.toFixed(1) %></h4>
+          </td>
+        </tr>
+      <% }) %>
+
+    <% } else { %>
+      <div>No Reviews</div>
+    <% } %>
   </table>
 </div>
+
+<%- include('../../_partials/modal') %>
