@@ -21,7 +21,10 @@
 <!-- Uses grid from bootstrap -->
 <div class="container reviewBox p-4 text-center">
   <h1 class='text-white mb-5'>Reviews</h1>
-   <table style="width:100%;">
+
+  <%- include('_partials/filter') %>
+
+    <table style="width:100%;">
 
     <% if (publicReviews.length > 0) { %>
       <tr>

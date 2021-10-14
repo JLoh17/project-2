@@ -116,31 +116,31 @@ $('#modal').on('click', '#reviews-form-submit', function(e) {
   }).catch((err) => errorHandler(err, $elem))
 })
 
-//     if (method === 'POST') { // this makes sure a newly created item is shown as first
-//       const id = $('#modal').find('.modal-title span').text()
-//       const equipment = $('#modal').find('.modal-body h1').text()
-//       if (id) {
-//         $('#reviews-list').prepend(`
-//         <tr id="reviews-list" class="list-unstyled">
-//           <td>
-//             <h4><a class="show-btn text-white text-decoration-none" data-url="/api/my/reviews/${id}" data-method="GET">${equipment}</a></h4>
-//           </td>
+    if (method === 'POST') { // this makes sure a newly created item is shown as first
+      const id = $('#modal').find('.modal-title span').text()
+      const equipment = $('#modal').find('.modal-body h1').text()
+      if (id) {
+        $('#reviews-list').prepend(`
+        <tr id="reviews-list" class="list-unstyled">
+          <td>
+            <h4><a class="show-btn text-white text-decoration-none" data-url="/api/my/reviews/${id}" data-method="GET">${equipment}</a></h4>
+          </td>
 
-//           <td class="d-flex">
-//             <button class="edit-btn btn-dark btn-lg me-1" data-url="/api/my/reviews/${id}edit" data-method="GET">
-//               <h5 class="fas fa-edit"></h5>
-//             </button>
+          <td class="d-flex">
+            <button class="edit-btn btn-dark btn-lg me-1" data-url="/api/my/reviews/${id}edit" data-method="GET">
+              <h5 class="fas fa-edit"></h5>
+            </button>
 
-//             <button class="delete-btn btn btn-danger btn-lg" data-url="/api/my/reviews/            <button class="edit-btn btn-dark btn-lg me-1" data-url="/api/my/reviews/${id}edit" data-method="GET">
-// " data-method="DELETE">
-//               <h5 class="fas fa-trash"></h5>
-//             </button>
-//           </td>
+            <button class="delete-btn btn btn-danger btn-lg" data-url="/api/my/reviews/            <button class="edit-btn btn-dark btn-lg me-1" data-url="/api/my/reviews/${id}edit" data-method="GET">
+" data-method="DELETE">
+              <h5 class="fas fa-trash"></h5>
+            </button>
+          </td>
 
-//           <td>
-//             <h4><%= review.rating.toFixed(1) %></h4>
-//           </td>
-//         </tr>
-//         `)
-//       }
-//     }
+          <td>
+            <h4><%= review.rating.toFixed(1) %></h4>
+          </td>
+        </tr>
+        `)
+      }
+    }

@@ -8,6 +8,7 @@ const myReviewsIndex = async function(req, res){
   const { locals: { currentUser } } = res // show this when have user
 
   const q = query.q || ''
+  const sort = query.sort || "createdAt"
   const page = Number(query.page) || 1
   const limit = 10
   const offset = (page - 1) * limit
@@ -15,7 +16,7 @@ const myReviewsIndex = async function(req, res){
     where: {
       UserId: currentUser.id
     },
-    order: [['createdAt', 'DESC']],
+    order: [[sort, 'DESC']],
     limit,
     offset,
     include: {
@@ -39,9 +40,7 @@ const myReviewsIndex = async function(req, res){
   res.render('pages/my-reviews/index', {
     reviews, // this links to pages/my-reviews/index.ejs
     filters: { q } // this links to pages/filter.ejs
-  }
-
-  )
+  })
 }
 
 module.exports = [
