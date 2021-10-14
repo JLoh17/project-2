@@ -1,31 +1,31 @@
-const { Wishlist } = require('../../../models')
+const { Rating } = require('../../../models')
 
 module.exports = function(format) {
   return async function (req, res, next) {
     const { locals: { currentUser } } = res
     const { params: { id } } = req
-    const wishlist = await Wishlist.findOne({
+    const rating = await Rating.findOne({
       where: {
         id: Number(id) || 0,
         UserId: currentUser.id
       },
       include: {
-        association: Wishlist.WishlistItems
+        association: Rating.Equipments
       },
-      order: [['WishlistItems', 'createdAt', 'DESC']]
+      order: [['Equipments', 'createdAt', 'DESC']]
     })
 
-    if (!wishlist) {
+    if (!rating) {
       if (format === 'modal') {
-        return res.render('api/my-wishlist/not-found', { layout: false })
+        return res.render('api/my-reviews/not-found', { layout: false })
       }
 
       if (format === 'json') {
-        return res.status(404).json({ message: `Wishlist of ID ${id} not found!` })
+        return res.status(404).json({ message: `Rating of ID ${id} not found!` })
       }
     }
 
-    res.locals.currentReviews = wishlist
+    res.locals.currentReviews = rating
 
     next()
   }

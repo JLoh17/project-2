@@ -18,8 +18,11 @@
 
 
 <%- contentFor('body') %>
-<div id="my-reviews-list" class="container reviewBox p-4 text-center">
+<br>
+<div id="my-reviews-list" class="container reviewBox p-4 text-center ">
   <h1 class='text-white'>My Reviews</h1>
+
+  <%- include('_partials/filter') %>
 
   <button id="new-btn" class="btn btn-primary btn-lg my-3" data-url="/api/my/reviews/new" data-method="GET" >New review</button>
 

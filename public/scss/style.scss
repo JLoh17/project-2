@@ -36,21 +36,6 @@ body {
 .reviewBox {
   background-color: #03989e;
   opacity: 0.9;
-  max-width: 70%;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  box-shadow: 5px 5px 20px pink;
-  border-radius: 10px;
-}
-
-// the index page for myReviews
-.myBox {
-  background-color: #03989e;
-  opacity: 0.9;
-  max-width: 90%;
   position: absolute;
   left: 50%;
   top: 50%;

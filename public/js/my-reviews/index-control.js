@@ -71,7 +71,7 @@ $('#my-reviews-list, #modal').on('click', '.show-btn, .edit-btn, #new-btn', func
 })
 
 // Delete button for modal and outside
-$('#my-reviews-list, #modal').on('click', '.delete-btn', function(e) {
+$('#my-reviews-list').on('click', '.delete-btn', function(e) {
   e.preventDefault()
   const parent = $(e.target).parent('button')[0]
   const $elem = parent ? $(e.target).parent() : $(e.target)
@@ -81,7 +81,7 @@ $('#my-reviews-list, #modal').on('click', '.delete-btn', function(e) {
 
   axios({ method: 'DELETE', url }).then(function() {
     $('#modal').modal('hide')
-    $(`#my-reviews-list .delete-btn[data-url="${url}"][data-method="DELETE"]`).parentsUntil('#reviews-list').remove() // links to views/pages/my-reviews/index.ejs
+    $(`#my-reviews-list .delete-btn data-method="DELETE"`).parentsUntil('#reviews-list').remove() // links to views/pages/my-reviews/index.ejs
   }).catch(errorHandler).then(function() {
     $('#my-reviews-list .delete-btn, #modal .delete-btn').attr('disabled', false)
   })

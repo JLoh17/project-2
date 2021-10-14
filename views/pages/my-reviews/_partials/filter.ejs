@@ -1,0 +1,13 @@
+<form class="form-inline mb-3 ps-5" action="/my/reviews" method="GET">
+  <div class="form-group d-flex justify-content-center mt-3">
+    <div class="col-sm-6">
+      <input class="form-control col-sm" type="text" placeholder="Search" name="q" value="<%= filters.q %>">
+    </div>
+    <div>
+      <button class="btn btn-primary btn-lg ms-5" type="submit">Search</button>
+    </div>
+    <div>
+      <a class="btn btn-danger btn-lg ms-3" href="/my/reviews">Reset</a>
+    </div>
+  </div>
+</form>

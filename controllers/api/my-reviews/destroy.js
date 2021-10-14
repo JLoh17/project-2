@@ -5,8 +5,9 @@ const { Rating } = require('../../../models')
 
 const apiEquipmentDestroy = async function(req, res) {
   const { locals: { currentEquipment } } = res
+  const { body: { id } }  = req
   await currentEquipment.destroy()
-  await Rating.destroy({ where: { EquipmentId: null } })
+  await Rating.destroy({ where: { ReviewId: id } })
   res.status(204).json()
 }
 
