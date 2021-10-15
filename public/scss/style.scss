@@ -11,6 +11,14 @@ body {
   font-family: 'Open-Sans';
   font-size: 20px;
   min-height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
+
+  >div {
+    height: calc(100vh - 56px);
+  }
 }
 
 // navbar changes
@@ -21,15 +29,13 @@ body {
 }
 
 // the center box for Home is different to the rest
-.homeBox {
-  background-color: #bfcdee;
-  opacity: 0.9;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: 5px 5px 20px #03989e;
-  border-radius: 10px;
+#pages-home {
+  #content-wrapper {
+    background-color: #bfcdee;
+    opacity: 0.9;
+    box-shadow: 5px 5px 20px #03989e;
+    border-radius: 10px;
+  }
 }
 
 // the index page for Reviews

@@ -26,7 +26,7 @@ const myReviewsIndex = async function(req, res){
         name: { // relates to name from Equipment schema
           [Op.iLike]: `%${q}%`
         }
-        },
+      },
       include: {
         association: Equipment.Comments,
         required: false, // false otherwise will duplicate extra equipment where comment = 0. Basically need to do this for all
