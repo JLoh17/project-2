@@ -19,33 +19,35 @@
 
 <%- contentFor('body') %>
 <!-- Uses grid from bootstrap -->
-<div class="container reviewBox p-4 text-center">
-  <h1 class="text-white mb-3">Reviews</h1>
+<div id="reviews-home" class="container d-flex justify-content-center align-items-center">
+  <div id="tableBox" class="container p-4 text-center">
+    <h1 class="text-white mb-3">Reviews</h1>
 
-  <%- include('_partials/filter') %>
+    <%- include('_partials/filter') %>
 
-    <table style="width:100%;" class="mt-4">
+      <table style="width:100%;" class="mt-4">
 
-    <% if (publicReviews.length > 0) { %>
-      <tr>
-        <th class="w-50"><h3 class="title">Equipment</h3></th>
-        <th class="w-50"><h3 class="title">Average ratings</h3></th>
-      </tr>
-      <% publicReviews.forEach(function(publicReview){ %>
+      <% if (publicReviews.length > 0) { %>
         <tr>
-          <td>
-            <h4><a class="show-btn text-white text-decoration-none" data-url="/api/reviews/<%= publicReview.id %>" data-method="GET"><%= publicReview.Equipment.name %></a></h4>
-          </td>
-          <td>
-            <h4><%= publicReview.rating.toFixed(1) %></h4>
-          </td>
+          <th class="w-50"><h3 class="title">Equipment</h3></th>
+          <th class="w-50"><h3 class="title">Average ratings</h3></th>
         </tr>
-      <% }) %>
+        <% publicReviews.forEach(function(publicReview){ %>
+          <tr>
+            <td>
+              <h4><a class="show-btn text-white text-decoration-none" data-url="/api/reviews/<%= publicReview.id %>" data-method="GET"><%= publicReview.Equipment.name %></a></h4>
+            </td>
+            <td>
+              <h4><%= publicReview.rating.toFixed(1) %></h4>
+            </td>
+          </tr>
+        <% }) %>
 
-    <% } else { %>
-      <div>No Reviews</div>
-    <% } %>
-  </table>
+      <% } else { %>
+        <div>No Reviews</div>
+      <% } %>
+    </table>
+  </div>
 </div>
 
 <%- include('../../_partials/modal') %>
