@@ -1,18 +1,17 @@
 const { authenticateCurrentUserByToken,
-  // myReviews: { getCurrentUserReviewsById }
+  myReviews: { getCurrentUserReviewsById }
 } = require('../../_helpers')
 const { Rating } = require('../../../models')
 
 const apiEquipmentDestroy = async function(req, res) {
-  const { locals: { currentEquipment } } = res
-  const { body: { id } }  = req
-  await currentEquipment.destroy()
+  const { locals: { ReviewId } } = res
+  await ReviewId.destroy()
   await Rating.destroy({ where: { ReviewId: id } })
   res.status(204).json()
 }
 
 module.exports = [
   authenticateCurrentUserByToken('json'),
-  // getCurrentUserReviewsById('json'),
+  getCurrentUserReviewsById('json'),
   apiEquipmentDestroy
 ]
