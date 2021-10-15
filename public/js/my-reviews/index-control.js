@@ -99,6 +99,8 @@ $('#modal').on('click', '#reviews-form-submit', function(e) {
   const formData = new FormData($('#modal form')[0])
 
   $elem.attr('disabled', true)
+  $('#modal').modal('hide')
+
 
   axios({ method, url, data: formData }).then(function(resp) {
     setModal(resp.data)

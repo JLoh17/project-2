@@ -1,0 +1,20 @@
+<form class="form-inline mb-3 ps-5" action="/reviews" method="GET">
+  <div class="form-group d-flex justify-content-center align-items-center">
+    <div class="col-sm-6">
+      <input class="form-control col-sm" type="text" placeholder="Search" name="q" value="<%= filters.q %>">
+    </div>
+    <div>
+      <select name="sort" id="" class="btn btn-secondary dropdown-toggle btn-lg ms-3 dropdown-menu-dark">
+        <option value="createdAt">Created at</option>
+        <option value="rating">Rating</option>
+        <option value="equipment">Equipment Name</option>
+      </select>
+    </div>
+    <div>
+      <button class="btn btn-success btn-lg ms-3" type="submit">Search</button>
+    </div>
+    <div>
+      <a class="btn btn-warning btn-lg ms-3" href="/reviews">Reset</a>
+    </div>
+  </div>
+</form>

@@ -16,7 +16,7 @@ const myReviewsIndex = async function(req, res){
     where: {
       UserId: currentUser.id
     },
-    order: [[sort, 'DESC']], // ['Rating.Equipment', 'id', 'DESC'] doesn't work?
+    order: [[sort, 'DESC'],], // ['Rating.Equipment', 'id', 'DESC'] doesn't work?
     limit,
     offset,
     include: {
