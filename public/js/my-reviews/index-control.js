@@ -77,13 +77,16 @@ $('#my-reviews-list').on('click', '.delete-btn', function(e) {
   const $elem = parent ? $(e.target).parent() : $(e.target)
   const url = $elem.data('url')
 
-  $('#my-reviews-list .delete-btn, #modal .delete-btn').attr('disabled', true) // disable button to not submit twice, then we send an AJAX request below to hide the modal, then delete the entire row of which we targeted
+  $('#my-reviews-list .delete-btn, #modal').attr('disabled', true) // disable button to not submit twice, then we send an AJAX request below to hide the modal, then delete the entire row of which we targeted
 
   axios({ method: 'DELETE', url }).then(function() {
     $('#modal').modal('hide')
-    $(`#my-reviews-list .delete-btn data-method="DELETE"`).parentsUntil('#reviews-list').remove() // links to views/pages/my-reviews/index.ejs
+    $(`#my-reviews-list .delete-btn[data-method="DELETE"]`).parentsUntil('#reviews-list').remove() // links to views/pages/my-reviews/index.ejs
+
+    window.location.reload()
+
   }).catch(errorHandler).then(function() {
-    $('#my-reviews-list .delete-btn, #modal .delete-btn').attr('disabled', false)
+    $('#my-reviews-list .delete-btn, #modal').attr('disabled', false)
   })
 })
 
@@ -112,6 +115,6 @@ $('#modal').on('click', '#reviews-form-submit', function(e) {
           </li>
         `)
       }
-    }
+    }window.location.reload()
   }).catch((err) => errorHandler(err, $elem))
 })

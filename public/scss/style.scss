@@ -17,7 +17,7 @@ body {
   background-position: center center;
 
   >div {
-    height: calc(100vh - 56px);
+    height: calc(100vh - 62px);
   }
 }
 
@@ -39,15 +39,14 @@ body {
 }
 
 // the index page for Reviews
-#reviews-home {
-  #tableBox {
-    background-color: #03989e;
-    opacity: 0.9;
-    color: white;
-    box-shadow: 5px 5px 20px pink;
-    border-radius: 10px;
-  }
+#tableBox {
+  background-color: #03989e;
+  opacity: 0.9;
+  color: white;
+  box-shadow: 5px 5px 20px pink;
+  border-radius: 10px;
 }
+
 
 // title within the boxes
 .title {

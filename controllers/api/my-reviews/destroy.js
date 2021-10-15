@@ -4,9 +4,10 @@ const { authenticateCurrentUserByToken,
 const { Rating } = require('../../../models')
 
 const apiEquipmentDestroy = async function(req, res) {
-  const { locals: { ReviewId } } = res
-  await ReviewId.destroy()
-  await Rating.destroy({ where: { ReviewId: id } })
+  const { locals: { currentReview } } = res
+  const { params: { id }} = req // id => api.router :id
+  await currentReview.destroy()
+  await Rating.destroy({ where: { rating: id }})
   res.status(204).json()
 }
 

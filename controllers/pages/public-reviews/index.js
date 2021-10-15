@@ -10,48 +10,35 @@ const publicReviewsIndex = async function (req, res) {
   const limit = 10
   const offset = (page - 1) * limit
 
-  const publicReviews = await Rating.findAll({
+  const equipments = await Equipment.findAll({
+    where: {
+      name: {
+        [Op.iLike]: `%${q}%`
+      }
+    },
+    attributes: {
+      include: [
+        [sequelize.fn('AVG', sequelize.col('Ratings.rating')), 'avgRating']
+      ],
+    },
+    include: {
+      duplicating: false,
+      association: Equipment.Ratings,
+      attributes: []
+    },
+    group: ['Equipment.id'],
     order: [[sort, 'DESC']],
     limit,
-    offset,
-    include: {
-      required: true,
-      association: Rating.Equipment,
-      where: {
-        name: { // relates to name from Equipment schema
-          [Op.iLike]: `%${q}%`
-        }
-      },
-      include: {
-        association: Equipment.Comments,
-        required: false, // false otherwise will duplicate extra equipment where comment = 0. Basically need to do this
-      }
-    }
+    offset
   })
 
-  // const equipments = await Equipment.findAll({
-  //   where: {
-  //     name: {
-  //       [Op.iLike]: `%${q}%`
-  //     }
-  //   },
-  //   attributes: {
-  //     include: [
-  //       [sequelize.fn('AVG', sequelize.col('Ratings.rating')), 'avgRating']
-  //     ],
-  //   },
-  //   include: {
-  //     association: Equipment.Ratings,
-  //     attributes: []
-  //   },
-  //   group: ['Equipment.id'],
-  // })
+  console.log(equipments)
 
 // Give only one equipment ID where many duplicate equipment ID
 // and for each equipment ID, provide the average rating
 
   res.render('pages/public-reviews/index', {
-    publicReviews,
+    equipments,
     filters: { q } // this links to pages/filter.ejs
   })
 }

@@ -5,10 +5,6 @@
   <style>
     body {
       background-image: url(https://wallpapercave.com/wp/wp3409440.jpg);
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-attachment: fixed;
-      background-position: center center;
     }
   </style>
 
@@ -27,18 +23,18 @@
 
       <table style="width:100%;" class="mt-4">
 
-      <% if (publicReviews.length > 0) { %>
+      <% if (equipments.length > 0) { %>
         <tr>
           <th class="w-50"><h3 class="title">Equipment</h3></th>
           <th class="w-50"><h3 class="title">Average ratings</h3></th>
         </tr>
-        <% publicReviews.forEach(function(publicReview){ %>
+        <% equipments.forEach(function(equipment){ %>
           <tr>
             <td>
-              <h4><a class="show-btn text-white text-decoration-none" data-url="/api/reviews/<%= publicReview.id %>" data-method="GET"><%= publicReview.Equipment.name %></a></h4>
+              <h4><a class="show-btn text-white text-decoration-none" data-url="/api/reviews/<%= equipment.id %>" data-method="GET"><%= equipment.name %></a></h4>
             </td>
             <td>
-              <h4><%= publicReview.rating.toFixed(1) %></h4>
+              <h4><%= equipment.dataValues.avgRating %></h4>
             </td>
           </tr>
         <% }) %>

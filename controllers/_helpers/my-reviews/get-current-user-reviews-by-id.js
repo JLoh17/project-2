@@ -10,9 +10,9 @@ module.exports = function(format) {
         UserId: currentUser.id
       },
       include: {
-        association: Rating.Equipments
+        association: Rating.Equipment
       },
-      order: [['Equipments', 'createdAt', 'DESC']]
+      order: [['EquipmentId', 'DESC']]
     })
 
     if (!rating) {
@@ -25,7 +25,7 @@ module.exports = function(format) {
       }
     }
 
-    res.locals.currentReviews = rating
+    res.locals.currentReview = rating
 
     next()
   }
