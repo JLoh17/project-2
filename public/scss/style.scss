@@ -17,7 +17,7 @@ body {
   background-position: center center;
 
   >div {
-    height: calc(100vh - 62px);
+    height: calc(100vh - 100px);
   }
 }
 
@@ -29,13 +29,11 @@ body {
 }
 
 // the center box for Home is different to the rest
-#pages-home {
-  #content-wrapper {
-    background-color: #bfcdee;
-    opacity: 0.9;
-    box-shadow: 5px 5px 20px #03989e;
-    border-radius: 10px;
-  }
+#content-wrapper {
+  background-color: #bfcdee;
+  opacity: 0.9;
+  box-shadow: 5px 5px 20px #03989e;
+  border-radius: 10px;
 }
 
 // the index page for Reviews

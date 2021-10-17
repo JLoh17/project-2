@@ -14,7 +14,7 @@
 
 
 <%- contentFor('body') %>
-<div id="reviews-home" class="container d-flex justify-content-center">
+<div id="reviews-home" class="container d-flex justify-content-center align-items-center">
   <div id="my-reviews-list" class="container p-4 text-center">
     <div id="tableBox" class="container p-4 text-center ">
       <h1 class='text-white'>My Reviews</h1>
@@ -38,11 +38,11 @@
               </td>
 
               <td class="d-flex">
-                <button class="edit-btn btn-dark btn-lg me-1" data-url="/api/my/reviews/<%= review.id %>/edit" data-method="GET">
+                <button class="edit-btn btn-dark btn me-1" data-url="/api/my/reviews/<%= review.id %>/edit" data-method="GET">
                   <h5 class="fas fa-edit"></h5>
                 </button>
 
-                <button class="delete-btn btn btn-danger btn-lg" data-url="/api/my/reviews/<%= review.id %>" data-method="DELETE">
+                <button class="delete-btn btn btn-danger btn" data-url="/api/my/reviews/<%= review.id %>" data-method="DELETE">
                   <h5 class="fas fa-trash"></h5>
                 </button>
               </td>

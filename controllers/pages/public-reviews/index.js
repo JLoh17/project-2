@@ -45,8 +45,6 @@ const publicReviewsIndex = async function (req, res) {
     offset
   })
 
-  // Give only one equipment ID where many duplicate equipment ID
-  // and for each equipment ID, provide the average rating
   res.render('pages/public-reviews/index', {
     equipments,
     filters: { q } // this links to pages/filter.ejs
