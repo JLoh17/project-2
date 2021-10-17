@@ -12,16 +12,25 @@ const myReviewsIndex = async function(req, res){
   const page = Number(query.page) || 1
   const limit = 10
   const offset = (page - 1) * limit
+  let order = []
+
+  if (sort === 'equipment.name') {
+    order.push([Rating.Equipment, 'name', 'ASC'])
+  } else {
+    order.push([sort, 'DESC'])
+  }
+
   const reviews = await Rating.findAll({
     where: {
       UserId: currentUser.id
     },
-    order: [[sort, 'DESC'],], // ['Rating.Equipment', 'id', 'DESC'] doesn't work?
+    order,
     limit,
     offset,
     include: {
       required: true,
       association: Rating.Equipment,
+      duplicating: false,
       where: {
         name: { // relates to name from Equipment schema
           [Op.iLike]: `%${q}%`
@@ -30,6 +39,7 @@ const myReviewsIndex = async function(req, res){
       include: {
         association: Equipment.Comments,
         required: false, // false otherwise will duplicate extra equipment where comment = 0. Basically need to do this for all
+        duplicating: false,
         where: {
           UserId: currentUser.id
         }
