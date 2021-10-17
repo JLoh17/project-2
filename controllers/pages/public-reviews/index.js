@@ -20,7 +20,7 @@ const publicReviewsIndex = async function (req, res) {
   }
 
 
-  const equipments = await Equipment.findAll({
+  const equipments = await Equipment.findAndCountAll({
     attributes: {
       include: [
         [sequelize.fn('AVG', sequelize.col('Ratings.rating')), 'avgRating']
@@ -46,8 +46,8 @@ const publicReviewsIndex = async function (req, res) {
   })
 
   res.render('pages/public-reviews/index', {
-    equipments,
-    filters: { q } // this links to pages/filter.ejs
+    equipments: equipments.rows,
+    filters: { q, page, limit, offset, totalPages: Math.ceil(equipments.count / limit) } // this links to pages/filter.ejs
   })
 }
 

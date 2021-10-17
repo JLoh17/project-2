@@ -20,7 +20,7 @@ const myReviewsIndex = async function(req, res){
     order.push([sort, 'DESC'])
   }
 
-  const reviews = await Rating.findAll({
+  const reviews = await Rating.findAndCountAll({
     where: {
       UserId: currentUser.id
     },
@@ -48,8 +48,8 @@ const myReviewsIndex = async function(req, res){
   })
 
   res.render('pages/my-reviews/index', {
-    reviews, // this links to pages/my-reviews/index.ejs
-    filters: { q } // this links to pages/filter.ejs
+    reviews: reviews.rows, // this links to pages/my-reviews/index.ejs
+    filters: { q, page, limit, offset, totalPages: Math.ceil(reviews.count / limit) } // Q links to pages/filter.ejs
   })
 }
 
