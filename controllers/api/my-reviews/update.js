@@ -9,11 +9,11 @@ const permittedChangeParams = {
 const validation = [
   body('title').isString().withMessage('Equipment must be a String').notEmpty().withMessage('Equipment is Required'),
   body('rating').toInt().isInt({ min: 0, max: 5 }).withMessage('Equipment rating must be between 0 and 5'),
-  body('comment').isString().withMessage('Comment must be a String').notEmpty().withMessage('Comment is Required'),
+  body('comment').isString().withMessage('Comment must be a String').notEmpty().withMessage('Comment is Required').isLength({ max: 255 }).withMessage('Character limit is 255, please reduce the number of characters'),
 ]
 
 const apiMyWishlistsUpdate = async function(req, res) {
-  const { body: { Ratings: titleParams, ...ratingParams } } = req
+  const { body: { Ratings: titleParams, ...RatingParams } } = req
   const { locals: { currentReview } } = res
 
   await currentReview.update(RatingParams, { fields: permittedChangeParams.Wishlist })

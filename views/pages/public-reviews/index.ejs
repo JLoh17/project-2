@@ -32,7 +32,7 @@
           <% equipments.forEach(function(equipment){ %>
             <tr>
               <td>
-                <h4><a class="show-btn text-white text-decoration-none" data-url="/api/reviews/<%= equipment.id %>" data-method="GET"><%= equipment.name %></a></h4>
+                <h4><a class="text-white text-decoration-none" data-url="/api/reviews/<%= equipment.id %>" data-method="GET"><%= equipment.name %></a></h4>
               </td>
               <td>
                 <h4><%= equipment.dataValues.avgRating.toFixed(1) %></h4>
