@@ -17,15 +17,14 @@
       class="form-select"
       aria-label="Default select example"
       name="rating"
-      data-error-ref="selected value = 3"
-      value ="<%= Rating.rating %>"
+      data-error-ref="rating"
       required
     >
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option selected value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
+      <option <%= Rating.rating === 1 ? 'selected' : '' %> value="1">1</option>
+      <option <%= Rating.rating === 2 ? 'selected' : '' %> value="2">2</option>
+      <option <%= Rating.rating === 3 ? 'selected' : '' %> value="3">3</option>
+      <option <%= Rating.rating === 4 ? 'selected' : '' %> value="4">4</option>
+      <option <%= Rating.rating === 5 ? 'selected' : '' %> value="5">5</option>
     </select>
     <div class="invalid-feedback"></div>
     <div class="form-text text-body">5 is the highest, 1 is the lowest</div>

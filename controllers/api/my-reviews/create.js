@@ -20,7 +20,6 @@ const validation = [
 
 const apiMyReviewsCreate = async function(req, res) {
   const { locals: { currentUser } } = res
-  const { body: MyReviewParams } = req
 
   req.body = {
     Rating: {
@@ -34,14 +33,14 @@ const apiMyReviewsCreate = async function(req, res) {
     }
   }
 
-  const newEquipment = await Equipment.create(req.body.Equipment)
+  const newEquipment = await Equipment.findOrCreate({ where: req.body.Equipment })
   const newRating = await currentUser.createRating({
     ...req.body.Rating,
-    EquipmentId: newEquipment.id
+    EquipmentId: newEquipment[0].id
   })
   const newComment = await currentUser.createComment({
     ...req.body.Comment,
-    EquipmentId: newEquipment.id
+    EquipmentId: newEquipment[0].id
   })
 
   res.status(200).json({
