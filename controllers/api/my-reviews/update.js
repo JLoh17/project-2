@@ -1,4 +1,5 @@
 const { body } = require('express-validator')
+const multer = require('multer')
 
 const { checkValidation, authenticateCurrentUserByToken ,
   myReviews: { getCurrentUserReviewsById } } = require('../../_helpers')
@@ -14,16 +15,16 @@ const validation = [
 ]
 
 const apiMyReviewsUpdate = async function(req, res) {
-  // const { body: { Ratings: titleParams, ...RatingParams } } = req
+  const { body: { Ratings: titleParams, ...RatingParams } } = req
   const { locals: { currentReview } } = res
 
-  // await currentReview.update(RatingParams, { fields: permittedChangeParams.Ratings })
-  // await currentReview.destroy({ where: { currentReview: null } })
+  await currentReview.update(RatingParams, { fields: permittedChangeParams.Ratings })
 
   res.render('api/my-reviews/show', { Rating: currentReview, layout: false })
 }
 
 module.exports = [
+  multer().none(),
   authenticateCurrentUserByToken('json'),
   validation,
   checkValidation,
