@@ -10,7 +10,7 @@ const myReviewsIndex = async function(req, res){
   const q = query.q || ''
   const sort = query.sort || "createdAt"
   const page = Number(query.page) || 1
-  const limit = 5
+  const limit = 10
   const offset = (page - 1) * limit
   let order = []
 
