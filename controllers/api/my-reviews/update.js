@@ -3,6 +3,7 @@ const multer = require('multer')
 
 const { checkValidation, authenticateCurrentUserByToken ,
   myReviews: { getCurrentUserReviewsById } } = require('../../_helpers')
+const { Equipment } = require('../../../models')
 
 const permittedChangeParams = {
   Rating: ['Equipment', 'Rating', 'Comment'],
@@ -15,11 +16,55 @@ const validation = [
 ]
 
 const apiMyReviewsUpdate = async function(req, res) {
-  const { body: { Ratings: titleParams, ...RatingParams } } = req
-  const { locals: { currentReview } } = res
+  const { locals: { currentReview, currentUser } } = res
 
-  await currentReview.update(RatingParams, { fields: permittedChangeParams.Ratings })
+  req.body = {
+    Rating: {
+      rating: req.body.rating,
+    },
+    Equipment: {
+      name: req.body.title,
+    },
+    Comment: {
+      comment: req.body.comment
+    }
+  }
 
+  // Destroy and Create New Rating & Comment
+  // await currentReview.Equipment.Comments[0].destroy()
+  // await currentReview.destroy()
+  // const newEquipment = await Equipment.findOrCreate({ where: req.body.Equipment })
+  // const newRating = await currentUser.createRating({
+  //   ...req.body.Rating,
+  //   EquipmentId: newEquipment[0].id
+  // })
+  // const newComment = await currentUser.createComment({
+  //   ...req.body.Comment,
+  //   EquipmentId: newEquipment[0].id
+  // })
+  //
+  // const review = {
+  //   ...newRating.dataValues,
+  //   Equipment: {
+  //     ...newEquipment.dataValues,
+  //     Comments: [
+  //       newComment.dataValues
+  //     ]
+  //   }
+  // }
+
+  // Update Existing Rating & Comment
+  const currentEquipment = await Equipment.findOrCreate({ where: req.body.Equipment })
+  await currentReview.update({
+    ...req.body.Rating,
+    EquipmentId: currentEquipment[0].id
+  })
+  await currentReview.Equipment.Comments[0].update({
+    ...req.body.Comment,
+    EquipmentId: currentEquipment[0].id
+  })
+
+  await currentReview.reload()
   res.render('api/my-reviews/show', { Rating: currentReview, layout: false })
 }
 

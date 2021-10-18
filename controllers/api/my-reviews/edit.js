@@ -4,6 +4,8 @@ const { authenticateCurrentUserByToken ,
 
 const apiMyReviewsShow = async function(req, res) {
   const { locals: { currentReview } } = res
+  console.log(currentReview)
+
   res.render('api/my-reviews/edit', { Rating: currentReview, layout: false })
 }
 
