@@ -6,6 +6,7 @@
       type="text"
       name="title"
       data-error-ref="title"
+      value="<%= Rating.Equipment.name%>"
       required>
     <div class="invalid-feedback"></div>
   </div>
@@ -16,6 +17,8 @@
       class="form-select"
       aria-label="Default select example"
       name="rating"
+      data-error-ref="selected value = 3"
+      value ="<%= Rating.rating %>"
       required
     >
       <option value="1">1</option>
@@ -36,6 +39,7 @@
       name="comment"
       data-error-ref="comment"
       maxlength="255"
+      value="<%= Rating.Equipment.Comments[0].comment %>"
       required>
     <div class="invalid-feedback"></div>
     <div class="form-text text-body">Limited to 255 characters</div>

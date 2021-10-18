@@ -91,7 +91,7 @@ $('#my-reviews-list, #modal').on('click', '.delete-btn', function(e) {
 })
 
 // Submit form on modal
-$('#modal').on('click', '#reviews-form-submit', function(e) {
+$('#modal').on('click', '#reviews-form-submit , #update-form-submit', function(e) {
   e.preventDefault()
   const $elem = $(e.target)
   const url = $elem.data('url')

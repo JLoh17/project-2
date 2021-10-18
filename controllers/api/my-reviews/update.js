@@ -1,9 +1,10 @@
 const { body } = require('express-validator')
 
-const { checkValidation, authenticateCurrentUserByToken , myWishlist: { getCurrentUserWishlistById } } = require('../../_helpers')
+const { checkValidation, authenticateCurrentUserByToken ,
+  myReviews: { getCurrentUserReviewsById } } = require('../../_helpers')
 
 const permittedChangeParams = {
-  Rating: ['title', 'rating', 'comment'],
+  Rating: ['Equipment', 'Rating', 'Comment'],
 }
 
 const validation = [
@@ -12,20 +13,20 @@ const validation = [
   body('comment').isString().withMessage('Comment must be a String').notEmpty().withMessage('Comment is Required').isLength({ max: 255 }).withMessage('Character limit is 255, please reduce the number of characters'),
 ]
 
-const apiMyWishlistsUpdate = async function(req, res) {
+const apiMyReviewsUpdate = async function(req, res) {
   const { body: { Ratings: titleParams, ...RatingParams } } = req
   const { locals: { currentReview } } = res
 
-  await currentReview.update(RatingParams, { fields: permittedChangeParams.Wishlist })
-  await WishlistItem.destroy({ where: { WishlistId: null } })
+  await currentReview.update(RatingParams, { fields: permittedChangeParams.Ratings })
+  await currentReview.destroy({ where: { currentReview: null } })
 
-  res.render('api/my-wishlists/show', { Rating: currentReview, layout: false })
+  res.render('api/my-reviews/show', { Rating: currentReview, layout: false })
 }
 
 module.exports = [
   authenticateCurrentUserByToken('json'),
   validation,
   checkValidation,
-  getCurrentUserWishlistById('modal'),
-  apiMyWishlistsUpdate
+  getCurrentUserReviewsById('modal', true),
+  apiMyReviewsUpdate
 ]

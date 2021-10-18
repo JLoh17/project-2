@@ -3,9 +3,9 @@
   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 <div class="modal-body">
-  <%- include('_partials/form') %>
+  <%- include('_partials/edit-form') %>
 </div>
 <div class="modal-footer d-flex justify-content-between">
-  <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
-  <button id="reviews-form-submit" type="button" class="btn-lg btn-primary" data-url="/api/my/reviews/<%= Rating.id %>" data-method="PUT">Submit</button>
+  <button type="button" class="btn btn-danger btn-lg" data-bs-dismiss="modal">Close</button>
+  <button id="update-form-submit" type="button" class="btn-lg btn-primary" data-url="/api/my/reviews/<%= Rating.id %>" data-method="PUT">Submit</button>
 </div>

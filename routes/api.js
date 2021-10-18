@@ -14,7 +14,7 @@ router.get('/my/reviews/new', require('../controllers/api/my-reviews/new')) // f
 router.post('/my/reviews', require('../controllers/api/my-reviews/create')) // create
 router.get('/my/reviews/:id', require('../controllers/api/my-reviews/show')) // show
 router.delete('/my/reviews/:id', require('../controllers/api/my-reviews/destroy'))
-// router.put('/my/reviews/:id', require('../controllers/api/my-reviews/update'))
+router.put('/my/reviews/:id', require('../controllers/api/my-reviews/update'))
 router.get('/my/reviews/:id/edit', require('../controllers/api/my-reviews/edit'))
 
 // Error Response
