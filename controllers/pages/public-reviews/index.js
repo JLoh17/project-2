@@ -7,8 +7,8 @@ const publicReviewsIndex = async function (req, res) {
   const q = query.q || ''
   const sort = query.sort || "createdAt"
   const page = Number(query.page) || 1
-  const limit = 10
-  const offset = (page - 1) * limit
+  const limit = 5
+  const offset = (page - 1 ) * limit
   let order = []
 
   if (sort === 'avgRating') {
@@ -47,7 +47,7 @@ const publicReviewsIndex = async function (req, res) {
 
   res.render('pages/public-reviews/index', {
     equipments: equipments.rows,
-    filters: { q, page, limit, offset, totalPages: Math.ceil(equipments.count / limit) } // this links to pages/filter.ejs
+    filters: { q, page, limit, offset, totalPages: Math.ceil(equipments.count.length / limit) } // this links to pages/filter.ejs
   })
 }
 

@@ -2,42 +2,24 @@ const { body } = require('express-validator')
 
 const { checkValidation, authenticateCurrentUserByToken , myWishlist: { getCurrentUserWishlistById } } = require('../../_helpers')
 
-const { WishlistItem } = require('../../../models')
-
 const permittedChangeParams = {
-  Wishlist: ['title', 'description', 'WishlistItem.name', 'WishlistItem.importance', 'WishlistItem.received'],
-  WishlistItems: ['name', 'importance', 'received']
+  Rating: ['title', 'rating', 'comment'],
 }
 
 const validation = [
-  body('title').isString().withMessage('Title must be a String').notEmpty().withMessage('Title is Required'),
-  body('description').isString().withMessage('Description must be a String').notEmpty().withMessage('Description is Required'),
-  body('WishlistItems').isArray({ min: 1}).withMessage('Wishlist must have at least 1 Item'),
-  body('WishlistItems.*.name').isString().withMessage('Item Name must be a String').notEmpty().withMessage('Item Name is Required'),
-  body('WishlistItems.*.importance').toInt().isInt({ min: 0, max: 5 }).withMessage('Item Important must be Between 0 and 5'),
-  body('WishlistItems.*.received').default(false).toBoolean().isBoolean().withMessage('Item Received must be a Checked or Un-Checked')
+  body('title').isString().withMessage('Equipment must be a String').notEmpty().withMessage('Equipment is Required'),
+  body('rating').toInt().isInt({ min: 0, max: 5 }).withMessage('Equipment rating must be between 0 and 5'),
+  body('comment').isString().withMessage('Comment must be a String').notEmpty().withMessage('Comment is Required'),
 ]
 
 const apiMyWishlistsUpdate = async function(req, res) {
-  const { body: { WishlistItems: itemsParams, ...wishlistParams } } = req
-  const { locals: { currentWishlist } } = res
+  const { body: { Ratings: titleParams, ...ratingParams } } = req
+  const { locals: { currentReview } } = res
 
-  await currentWishlist.update(wishlistParams, { fields: permittedChangeParams.Wishlist })
-  await currentWishlist.setWishlistItems([])
-  itemsParams.forEach(async function({ id: ItemId, ...itemParams }) {
-    let wishlistItem = await WishlistItem.findOne({ where: { id: Number(ItemId) || 0 } })
-
-    if (wishlistItem) {
-      await wishlistItem.update(itemParams, { fields: permittedChangeParams.WishlistItems })
-    } else {
-      wishlistItem = await WishlistItem.create(itemParams, { fields: permittedChangeParams.WishlistItems })
-    }
-
-    await currentWishlist.addWishlistItem(wishlistItem)
-  })
+  await currentReview.update(RatingParams, { fields: permittedChangeParams.Wishlist })
   await WishlistItem.destroy({ where: { WishlistId: null } })
 
-  res.render('api/my-wishlists/show', { wishlist: currentWishlist, layout: false })
+  res.render('api/my-wishlists/show', { Rating: currentReview, layout: false })
 }
 
 module.exports = [

@@ -1,11 +1,11 @@
 <div class="modal-header">
-  <h5 class="modal-title">Edit Review <%= review.id %></h5>
-  <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+  <h1 class="modal-title text-white mx-auto">Edit Review</h1>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 <div class="modal-body">
   <%- include('_partials/form') %>
 </div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-  <button id="reviews-form-submit" type="button" class="btn btn-success" data-url="/api/my/reviews/<%= review.id %>" data-method="PUT">Submit</button>
+<div class="modal-footer d-flex justify-content-between">
+  <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
+  <button id="reviews-form-submit" type="button" class="btn-lg btn-primary" data-url="/api/my/reviews/<%= Rating.id %>" data-method="PUT">Submit</button>
 </div>

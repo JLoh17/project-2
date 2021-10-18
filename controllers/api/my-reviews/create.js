@@ -12,11 +12,10 @@ const permittedParams = [
   'Comment',
 ]
 
-// maximum character = 150? create custom validation?
 const validation = [
   body('title').isString().withMessage('Equipment must be a String').notEmpty().withMessage('Equipment is Required'),
   body('rating').toInt().isInt({ min: 0, max: 5 }).withMessage('Equipment rating must be between 0 and 5'),
-  body('comment').isString().withMessage('Comment must be a String').notEmpty().withMessage('Comment is Required'),
+  body('comment').isString().withMessage('Comment must be a String').notEmpty().withMessage('Comment is Required').isLength({ max: 255 }).withMessage('Character limit is 255, please reduce the number of characters'), // these are express validators
 ]
 
 const apiMyReviewsCreate = async function(req, res) {

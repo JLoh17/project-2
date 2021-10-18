@@ -1,6 +1,6 @@
 const { Rating, Equipment } = require('../../../models')
 
-module.exports = function(format, useAssociation) {
+module.exports = function(format, useAssociation) { // useAssociation is a boolean
   return async function (req, res, next) {
     const { locals: { currentUser } } = res
     const { params: { id } } = req

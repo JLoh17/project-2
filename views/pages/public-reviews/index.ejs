@@ -15,35 +15,37 @@
 
 <%- contentFor('body') %>
 <!-- Uses grid from bootstrap -->
-<div id="reviews-home" class="container d-flex justify-content-center align-items-center">
-  <div id="tableBox" class="p-4 text-center">
-  <h1 class="text-white mb-3">Reviews</h1>
+<div id="reviews-home" class="d-flex justify-content-center">
+  <div id="my-reviews-list" class="container p-3 text-center">
+    <div id="tableBox" class="p-4 text-center ">
+    <h1 class="text-white mb-3">Reviews</h1>
 
-  <%- include('_partials/filter') %>
+      <%- include('_partials/filter') %>
 
-    <table style="width:100%;" class="mt-4">
 
-    <% if (equipments.length > 0) { %>
-      <tr>
-        <th class="w-50"><h3 class="title">Equipment</h3></th>
-        <th class="w-50"><h3 class="title">Average ratings</h3></th>
-      </tr>
-      <% equipments.forEach(function(equipment){ %>
-        <tr>
-          <td>
-            <h4><a class="show-btn text-white text-decoration-none" data-url="/api/reviews/<%= equipment.id %>" data-method="GET"><%= equipment.name %></a></h4>
-          </td>
-          <td>
-            <h4><%= equipment.dataValues.avgRating.toFixed(1) %></h4>
-          </td>
-        </tr>
-      <% }) %>
-    </table>
-    <%- include('_partials/pagination') %>
+      <% if (equipments.length > 0) { %>
+        <table style="width:100%;" class="mt-4">
+          <tr>
+            <th class="w-50"><h3 class="title">Equipment</h3></th>
+            <th class="w-50"><h3 class="title">Average ratings</h3></th>
+          </tr>
+          <% equipments.forEach(function(equipment){ %>
+            <tr>
+              <td>
+                <h4><a class="show-btn text-white text-decoration-none" data-url="/api/reviews/<%= equipment.id %>" data-method="GET"><%= equipment.name %></a></h4>
+              </td>
+              <td>
+                <h4><%= equipment.dataValues.avgRating.toFixed(1) %></h4>
+              </td>
+            </tr>
+          <% }) %>
+        </table>
+        <%- include('_partials/pagination') %>
 
-    <% } else { %>
-      <div>No Reviews</div>
-    <% } %>
+        <% } else { %>
+          <div>No Reviews</div>
+        <% } %>
+    </div>
   </div>
 </div>
 

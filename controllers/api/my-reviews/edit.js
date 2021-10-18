@@ -1,8 +1,14 @@
-const { authenticateCurrentUserByToken , myReviews: { getCurrentUserReviewsById } } = require('../../_helpers')
+const { authenticateCurrentUserByToken ,
+  myReviews: { getCurrentUserReviewsById }
+} = require('../../_helpers')
 
-const apiMyWishlistsEdit = async function(req, res) {
-  const { locals: { currentRating } } = res
-  res.render('api/my-reviews/edit', { ratings: currentRating, layout: false })
+const apiMyReviewsShow = async function(req, res) {
+  const { locals: { currentReview } } = res
+  res.render('api/my-reviews/edit', { Rating: currentReview, layout: false })
 }
 
-module.exports = [authenticateCurrentUserByToken('json'), getCurrentUserReviewsById('modal'), apiMyWishlistsEdit]
+module.exports = [
+  authenticateCurrentUserByToken('json'),
+  getCurrentUserReviewsById('modal', true),
+  apiMyReviewsShow,
+]
