@@ -48,28 +48,6 @@ const apiMyReviewsCreate = async function(req, res) {
     Ratings: [newRating.dataValues],
     Comments: [newComment.dataValues]
   })
-
-  // await Equipment.findAll({
-  //   where: {
-  //     id: Number(req.params.id) || 0
-  //   },
-  //   include: [
-  //     {
-  //       association: Equipment.Ratings
-  //     }, {
-  //       association: Equipment.Comments
-  //     }
-  //   ]
-  // })
-
-  // res.render('api/my-reviews/show', {
-  //   myReview: {
-  //     ...newEquipment,
-  //     Ratings: [newRating],
-  //     Comments: [newComment]
-  //   },
-  //   layout: false
-  // })
 }
 
 module.exports = [

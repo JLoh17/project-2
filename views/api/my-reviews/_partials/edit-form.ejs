@@ -9,6 +9,7 @@
       value="<%= Rating.Equipment.name%>"
       required>
     <div class="invalid-feedback"></div>
+    <div class="form-text text-body">Limited to 40 characters</div>
   </div>
 
   <div class="form-group">
@@ -20,6 +21,7 @@
       data-error-ref="rating"
       required
     >
+    <!-- Checks if rating was selected, then will show otherwise will be 0 -->
       <option <%= Rating.rating === 1 ? 'selected' : '' %> value="1">1</option>
       <option <%= Rating.rating === 2 ? 'selected' : '' %> value="2">2</option>
       <option <%= Rating.rating === 3 ? 'selected' : '' %> value="3">3</option>

@@ -1,5 +1,3 @@
-// const { authenticateCurrentUserByToken } = require('../../_helpers')
-
 const { Equipment } = require('../../../models')
 
 const apiMyReviewsNew = async function(req, res) {
@@ -13,5 +11,4 @@ const apiMyReviewsNew = async function(req, res) {
 }
 
 module.exports = [
-  // authenticateCurrentUserByToken('json'),
   apiMyReviewsNew]

@@ -8,17 +8,17 @@ const permittedChangeParams = {
 }
 
 const validation = [
-  body('title').isString().withMessage('Equipment must be a String').notEmpty().withMessage('Equipment is Required'),
+  body('title').isString().withMessage('Equipment must be a String').notEmpty().withMessage('Equipment is Required').isLength({ max: 40 }).withMessage('Character limit is 40, please reduce the number of characters'),
   body('rating').toInt().isInt({ min: 0, max: 5 }).withMessage('Equipment rating must be between 0 and 5'),
   body('comment').isString().withMessage('Comment must be a String').notEmpty().withMessage('Comment is Required').isLength({ max: 255 }).withMessage('Character limit is 255, please reduce the number of characters'),
 ]
 
 const apiMyReviewsUpdate = async function(req, res) {
-  const { body: { Ratings: titleParams, ...RatingParams } } = req
+  // const { body: { Ratings: titleParams, ...RatingParams } } = req
   const { locals: { currentReview } } = res
 
-  await currentReview.update(RatingParams, { fields: permittedChangeParams.Ratings })
-  await currentReview.destroy({ where: { currentReview: null } })
+  // await currentReview.update(RatingParams, { fields: permittedChangeParams.Ratings })
+  // await currentReview.destroy({ where: { currentReview: null } })
 
   res.render('api/my-reviews/show', { Rating: currentReview, layout: false })
 }
