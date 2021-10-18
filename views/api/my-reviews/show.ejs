@@ -1,24 +1,20 @@
 <div class="modal-header">
-  <h5 class="modal-title">My Reviews - <span><%= review.id %></span></h5>
-  <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+  <h1 class="modal-title text-white mx-auto"><%= Rating.User.profileName %>'s reviewed gear list</h1>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
-<div class="modal-body">
 
-    <h1 class="mb-3"><%= review.user.profileName %>'s reviewed gear list</h1>
-
-    <div class="mb-3">
-      <button class="edit-btn btn-dark btn-lg me-1" data-url="/api/my/reviews/<%= review.id %>/edit" data-method="GET">
-        <h5 class="fas fa-edit"></h5>
-      </button>
-
-      <button class="delete-btn btn btn-danger btn-lg" data-url="/api/my/reviews/<%= review.id %>" data-method="DELETE">
-        <h5 class="fas fa-trash"></h5>
-      </button>
-    </div>
-
-  <div class="text-center">
-    <h1 class="mb-3"><%= review.Equipment.name %></h1>
-    <h2 class="mb-3"><%= review.rating%></h2>
-    <h3 class="mb-3"><%= review.comments %></h3>
+<div class="modal-body text-white">
+  <div class="mb-3 text-center">
+    <button class="edit-btn btn-dark btn me-1" data-url="/api/my/reviews/<%= Rating.id %>/edit" data-method="GET">
+      <h5 class="fas fa-edit"></h5>
+    </button>
+    <button class="delete-btn btn btn-danger" data-url="/api/my/reviews/<%= Rating.id %>" data-method="DELETE">
+      <h5 class="fas fa-trash"></h5>
+    </button>
+  </div>
+  <div>
+    <h4 class="mb-3">Equipment: <%= Rating.Equipment.name %></h4>
+    <h4 class="mb-3">Rating: <%= Rating.rating %></h4>
+    <h4 class="mb-3">Comment: <%= Rating.Equipment.Comments[0].comment %></h4>
   </div>
 </div>
