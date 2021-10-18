@@ -70,8 +70,8 @@ $('#my-reviews-list, #modal').on('click', '.show-btn, .edit-btn, #new-btn', func
   }).catch(errorHandler)
 })
 
-// Delete button for modal and outside
-$('#my-reviews-list').on('click', '.delete-btn', function(e) {
+// Delete button for list and delete button inside modal
+$('#my-reviews-list, #modal').on('click', '.delete-btn', function(e) {
   e.preventDefault()
   const parent = $(e.target).parent('button')[0]
   const $elem = parent ? $(e.target).parent() : $(e.target)
