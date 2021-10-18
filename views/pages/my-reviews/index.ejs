@@ -11,7 +11,6 @@
 <%- contentFor('scripts') %>
 <script src="/js/my-reviews/index-control.js" defer></script>
 
-
 <%- contentFor('body') %>
 <div id="reviews-home" class="container d-flex justify-content-center align-items-center">
   <div id="my-reviews-list" class="container p-4 text-center">
@@ -19,12 +18,11 @@
       <h1 class='text-white'>My Reviews</h1>
 
       <%- include('_partials/filter') %>
+      <button id="new-btn" class="btn btn-primary btn-lg mb-3" data-url="/api/my/reviews/new" data-method="GET" >New review</button>
 
-        <button id="new-btn" class="btn btn-primary btn-lg mb-3" data-url="/api/my/reviews/new" data-method="GET" >New review</button>
-
-      <table>
-        <!-- table header -->
-        <% if (reviews.length > 0) { %>
+      <!-- table header -->
+      <% if (reviews.length > 0) { %>
+        <table>
           <tr>
             <th class="w-50"><h3 class="title">Equipment</h3></th>
             <th class="w-20"><h3>&#160<h3></h3></th>
@@ -53,12 +51,11 @@
           <% }) %>
         </table>
         <%- include('_partials/pagination') %>
-        <% } else { %>
-          <h4 class="mt-3">Start growing your list of reviews with the "New" button</h4>
-        <% } %>
+      <% } else { %>
+        <h4 class="mt-3">Start growing your list of reviews with the "New" button</h4>
+      <% } %>
     </div>
   </div>
-
 </div>
 
 <%- include('../../_partials/modal') %>
